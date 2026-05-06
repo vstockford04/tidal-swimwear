@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipping &amp; Returns — Tidal Swimwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Italiana&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f1d3a;
+  --navy-soft: #1a2a4c;
+  --cream: #f4ede2;
+  --cream-warm: #faf3e6;
+  --sand: #e8dcc8;
+  --coral: #c8553d;
+  --toffee: #a47551;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --hairline: rgba(15,29,58,0.10);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ANNOUNCEMENT BAR */
+.announce {
+  background: var(--navy);
+  color: var(--cream);
+  text-align: center;
+  padding: 9px 20px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+/* NAV */
+nav {
+  background: rgba(244,237,226,0.96);
+  backdrop-filter: blur(12px);
+  padding: 10px 56px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--hairline);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: opacity 0.25s;
+}
+.nav-links a:hover { opacity: 0.5; }
+.logo {
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+.logo .wave-logo { width: 200px; max-width: 9vw; height: auto; }
+.wave-logo path { fill: none; stroke-linecap: round; }
+.logo-mark {
+  font-family: 'Italiana', serif;
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--navy);
+  line-height: 1;
+  margin-top: 1px;
+}
+.logo-sub {
+  font-size: 6px;
+  letter-spacing: 0.5em;
+  color: var(--navy);
+  opacity: 0.55;
+  margin-top: 2px;
+}
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+.nav-right a {
+  color: var(--navy);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  transition: opacity 0.25s;
+}
+.nav-right a:hover { opacity: 0.5; }
+.cart-icon { position: relative; display: inline-flex; align-items: center; line-height: 0; }
+.cart-count {
+  position: absolute;
+  top: -7px; right: -9px;
+  background: var(--coral);
+  color: var(--cream);
+  font-size: 8px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  line-height: 1;
+}
+
+/* PAGE HEADER */
+.page-header {
+  background: var(--cream);
+  padding: 96px 56px 72px;
+  text-align: center;
+  position: relative;
+}
+.page-header .eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 28px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+.page-header h1 {
+  font-family: 'Italiana', serif;
+  font-size: clamp(3.4rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.015em;
+  color: var(--navy);
+  margin-bottom: 28px;
+}
+.page-header .header-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 1.6vw, 19px);
+  color: var(--muted);
+  max-width: 580px;
+  margin: 0 auto 30px;
+  line-height: 1.55;
+}
+.page-header .header-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--coral);
+  margin: 22px auto;
+  opacity: 0.5;
+}
+
+/* TAB NAVIGATION */
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding: 0 56px;
+  background: var(--cream);
+}
+.tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 18px 36px 16px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s;
+  margin-bottom: -1px;
+  font-weight: 400;
+}
+.tab-btn.active {
+  color: var(--navy);
+  border-bottom-color: var(--navy);
+}
+.tab-btn:hover { color: var(--navy); }
+
+/* CONTENT WRAP */
+.content-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 80px 56px 120px;
+}
+
+/* TAB PANELS */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* SHIPPING OPTIONS */
+.shipping-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--hairline);
+  margin-bottom: 72px;
+}
+.shipping-card {
+  padding: 40px 36px;
+  border-right: 1px solid var(--hairline);
+  position: relative;
+}
+.shipping-card:last-child { border-right: none; }
+.shipping-card.featured {
+  background: var(--navy);
+  color: var(--cream);
+}
+.ship-tag {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--coral);
+  margin-bottom: 18px;
+  display: block;
+}
+.shipping-card.featured .ship-tag { color: var(--sand); }
+.ship-name {
+  font-family: 'Italiana', serif;
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  font-weight: 400;
+  color: var(--navy);
+}
+.shipping-card.featured .ship-name { color: var(--cream); }
+.ship-price {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 20px;
+}
+.ship-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.shipping-card.featured .ship-desc { color: rgba(244,237,226,0.65); }
+.ship-time {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.shipping-card.featured .ship-time {
+  border-top-color: rgba(244,237,226,0.12);
+  color: rgba(244,237,226,0.4);
+}
+.ship-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--coral);
+  color: var(--cream);
+  font-size: 7px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+}
+
+/* DESTINATIONS TABLE */
+.destinations {
+  margin-bottom: 72px;
+}
+.section-title {
+  font-family: 'Italiana', serif;
+  font-size: clamp(22px, 2.6vw, 34px);
+  color: var(--navy);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
+}
+.section-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+.dest-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--hairline);
+}
+.dest-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+}
+.dest-table thead {
+  background: var(--navy);
+  color: var(--cream);
+}
+.dest-table thead th {
+  padding: 14px 24px;
+  text-align: left;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 9px;
+}
+.dest-table tbody tr {
+  border-bottom: 1px solid var(--hairline);
+  transition: background 0.18s;
+}
+.dest-table tbody tr:last-child { border-bottom: none; }
+.dest-table tbody tr:hover { background: var(--cream-warm); }
+.dest-table td {
+  padding: 16px 24px;
+  color: var(--ink);
+  font-weight: 300;
+}
+.dest-table td:first-child {
+  font-weight: 400;
+  color: var(--navy);
+}
+.dest-table .free-tag {
+  color: var(--coral);
+  font-weight: 400;
+}
+
+/* DARK BAND */
+.info-band {
+  background: var(--navy);
+  padding: 56px;
+  margin-bottom: 72px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+.info-band-item .ib-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 14px;
+}
+.info-band-item h4 {
+  font-family: 'Italiana', serif;
+  font-size: 24px;
+  color: var(--cream);
+  font-weight: 400;
+  margin-bottom: 14px;
+  letter-spacing: 0.03em;
+}
+.info-band-item p {
+  font-size: 13px;
+  color: rgba(244,237,226,0.6);
+  line-height: 1.75;
+}
+
+/* ACCORDION */
+.accordion { margin-bottom: 72px; }
+.accordion-item {
+  border-bottom: 1px solid var(--hairline);
+}
+.accordion-item:first-child {
+  border-top: 1px solid var(--hairline);
+}
+.accordion-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 26px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  gap: 20px;
+}
+.accordion-q {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--navy);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+.accordion-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--coral);
+  transition: transform 0.3s;
+}
+.accordion-item.open .accordion-icon { transform: rotate(45deg); }
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.accordion-inner {
+  padding: 0 0 28px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 680px;
+}
+.accordion-inner a {
+  color: var(--coral);
+  text-decoration: none;
+}
+.accordion-inner a:hover { text-decoration: underline; }
+
+/* RETURN STEPS */
+.return-steps {
+  margin-bottom: 72px;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--hairline);
+}
+.step {
+  padding: 40px 30px;
+  border-right: 1px solid var(--hairline);
+}
+.step:last-child { border-right: none; }
+.step-num {
+  font-family: 'Italiana', serif;
+  font-size: 52px;
+  color: rgba(15,29,58,0.07);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.step-title {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+.step-text {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+/* POLICY NOTE */
+.policy-note {
+  border: 1px solid var(--hairline);
+  padding: 40px 48px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 72px;
+}
+.policy-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--coral);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.policy-title {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 10px;
+}
+.policy-body {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* CTA */
+.contact-cta {
+  text-align: center;
+  padding: 72px 56px;
+  background: var(--cream-warm);
+  border: 1px solid var(--hairline);
+}
+.contact-cta .cta-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 18px;
+}
+.contact-cta h3 {
+  font-family: 'Italiana', serif;
+  font-size: clamp(22px, 2.4vw, 32px);
+  color: var(--navy);
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+.contact-cta p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--muted);
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--cream);
+  text-decoration: none;
+  padding: 14px 44px;
+  font-size: 9px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  transition: background 0.25s;
+}
+.btn-primary:hover { background: var(--coral); }
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 72px 56px 36px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 40px;
+  border-bottom: 1px solid rgba(244,237,226,0.1);
+  padding-bottom: 56px;
+  margin-bottom: 28px;
+}
+.footer-brand .f-logo {
+  font-family: 'Italiana', serif;
+  font-size: 22px;
+  letter-spacing: 0.22em;
+  display: block;
+  margin-bottom: 14px;
+}
+.footer-brand p {
+  font-size: 12px;
+  color: rgba(244,237,226,0.5);
+  line-height: 1.7;
+  max-width: 240px;
+}
+.footer-col h4 {
+  font-size: 9px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 18px;
+  color: var(--sand);
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 11px; }
+.footer-col ul li a {
+  color: rgba(244,237,226,0.5);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 300;
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--cream); }
+.footer-bottom {
+  font-size: 10px;
+  color: rgba(244,237,226,0.3);
+  letter-spacing: 0.12em;
+}
+</style>
+</head>
+<body>
+
+<div class="announce">Free shipping on orders over £120 · Easy 30-day returns</div>
+
+<nav>
+  <ul class="nav-links">
+    <li><a href="Claude_collection.html">Collection</a></li>
+    <li><a href="tidal-swimwear.html#story">Our Story</a></li>
+    <li><a href="#">Sustainability</a></li>
+  </ul>
+
+  <a class="logo" href="tidal-swimwear.html">
+    <svg class="wave-logo" viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 38 Q 30 10 55 28 Q 75 44 95 24 Q 115 4 135 22 Q 155 40 175 22 Q 195 4 215 20 Q 235 36 250 24" stroke="#0f1d3a" stroke-width="2.2" fill="none"/>
+    </svg>
+    <span class="logo-mark">TIDAL</span>
+    <span class="logo-sub">SWIMWEAR</span>
+  </a>
+
+  <div class="nav-right">
+    <a href="#" aria-label="Search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+    </a>
+    <a href="#" aria-label="Account">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </a>
+    <a href="#" class="cart-icon" aria-label="Bag">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-count">0</span>
+    </a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <p class="eyebrow">We've got you covered</p>
+  <h1>Shipping &amp; Returns</h1>
+  <div class="header-divider"></div>
+  <p class="header-tagline">Thoughtful packaging, straightforward returns, and a team that genuinely wants you to love what you ordered.</p>
+</header>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <button class="tab-btn active" data-tab="shipping">Shipping</button>
+  <button class="tab-btn" data-tab="returns">Returns</button>
+  <button class="tab-btn" data-tab="faq">FAQ</button>
+</div>
+
+<div class="content-wrap">
+
+  <!-- ======== SHIPPING PANEL ======== -->
+  <div class="tab-panel active" id="tab-shipping">
+
+    <div class="shipping-cards">
+      <div class="shipping-card">
+        <span class="ship-tag">Economy</span>
+        <p class="ship-name">Standard</p>
+        <p class="ship-price">£4.95 · Free over £120</p>
+        <p class="ship-desc">Our most popular option. Tracked and insured, dispatched within 1 business day of your order being placed.</p>
+        <p class="ship-time">3–5 business days</p>
+      </div>
+      <div class="shipping-card featured">
+        <span class="ship-tag">Recommended</span>
+        <span class="ship-badge">Most Popular</span>
+        <p class="ship-name">Express</p>
+        <p class="ship-price">£9.95</p>
+        <p class="ship-desc">Order by 1pm Monday to Friday and receive your Tidal pieces the following working day. Fully tracked.</p>
+        <p class="ship-time">Next business day</p>
+      </div>
+      <div class="shipping-card">
+        <span class="ship-tag">International</span>
+        <p class="ship-name">Worldwide</p>
+        <p class="ship-price">From £14.95</p>
+        <p class="ship-desc">We ship to over 40 countries. All international orders are fully tracked and dispatch within 1–2 business days.</p>
+        <p class="ship-time">5–14 business days</p>
+      </div>
+    </div>
+
+    <div class="destinations">
+      <p class="section-title">International Destinations</p>
+      <p class="section-note">Duties and taxes may apply and are the responsibility of the recipient.</p>
+      <div class="dest-table-wrap">
+        <table class="dest-table">
+          <thead>
+            <tr>
+              <th>Region</th>
+              <th>Countries</th>
+              <th>Cost</th>
+              <th>Estimated Delivery</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>United Kingdom</td>
+              <td>England, Scotland, Wales, N. Ireland</td>
+              <td class="free-tag">Free over £120 · £4.95 below</td>
+              <td>1–5 business days</td>
+            </tr>
+            <tr>
+              <td>Europe</td>
+              <td>EU member states + Switzerland, Norway</td>
+              <td>£14.95</td>
+              <td>4–8 business days</td>
+            </tr>
+            <tr>
+              <td>United States & Canada</td>
+              <td>All US states, Canada</td>
+              <td>£18.95</td>
+              <td>7–12 business days</td>
+            </tr>
+            <tr>
+              <td>Australia & New Zealand</td>
+              <td>Australia, New Zealand</td>
+              <td>£22.95</td>
+              <td>10–14 business days</td>
+            </tr>
+            <tr>
+              <td>Rest of World</td>
+              <td>Middle East, Asia, South America &amp; more</td>
+              <td>£24.95</td>
+              <td>10–16 business days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-band">
+      <div class="info-band-item">
+        <p class="ib-eyebrow">Packaging</p>
+        <h4>Wrapped with care</h4>
+        <p>Every Tidal order is wrapped in tissue and nestled in our signature recycled kraft box. We use plastic-free packaging throughout — no polybags, no excess. Gift notes are always available at checkout.</p>
+      </div>
+      <div class="info-band-item">
+        <p class="ib-eyebrow">Tracking</p>
+        <h4>Always in the loop</h4>
+        <p>You'll receive a confirmation email the moment your order is placed, and a dispatch email with your tracking link as soon as your parcel leaves us. You can track your order at any time from your account.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ======== RETURNS PANEL ======== -->
+  <div class="tab-panel" id="tab-returns">
+
+    <div class="return-steps">
+      <p class="section-title">How to Return</p>
+      <p class="section-note">Returns are free for UK orders. International returns are at the customer's cost.</p>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">01</div>
+          <p class="step-title">Request</p>
+          <p class="step-text">Email <strong style="font-weight:400">hello@tidalswimwear.com</strong> within 30 days of delivery with your order number and the items you'd like to return.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <p class="step-title">Receive Label</p>
+          <p class="step-text">We'll send you a prepaid Royal Mail label (UK) or return instructions within 1 business day. No printing needed for QR code returns.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <p class="step-title">Post Back</p>
+          <p class="step-text">Repack your items with the hygiene liner intact and drop them at your nearest Royal Mail collection point or Post Office.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <p class="step-title">Refund</p>
+          <p class="step-text">Once received and inspected, your refund is processed within 3–5 business days to your original payment method.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-note">
+      <div class="policy-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <p class="policy-title">Return Conditions</p>
+        <p class="policy-body">Items must be returned in their original, unworn condition with all tags attached and the hygiene liner in place. For hygiene reasons, we are unable to accept returns on swimwear where the hygiene liner has been removed. We reserve the right to decline returns that do not meet these conditions. Sale items are eligible for exchange or store credit only.</p>
+      </div>
+    </div>
+
+    <div class="info-band">
+      <div class="info-band-item">
+        <p class="ib-eyebrow">Exchanges</p>
+        <h4>Prefer a different size?</h4>
+        <p>We're happy to exchange for a different size or colour, subject to availability. Simply mention this when you email us to start your return and we'll hold the item while your return is in transit.</p>
+      </div>
+      <div class="info-band-item">
+        <p class="ib-eyebrow">Refunds</p>
+        <h4>Back to you swiftly</h4>
+        <p>Refunds are issued to your original payment method within 3–5 business days of us receiving your return. You'll receive an email confirmation the moment we process it. Bank processing times may vary.</p>
+      </div>
+    </div>
+
+    <div class="contact-cta">
+      <p class="cta-eyebrow">Need Help?</p>
+      <h3>We're always on hand</h3>
+      <p>Not sure if your item is eligible, or have a question about your return? Our team responds within one business day.</p>
+      <a href="mailto:hello@tidalswimwear.com" class="btn-primary">Email Us</a>
+    </div>
+
+  </div>
+
+  <!-- ======== FAQ PANEL ======== -->
+  <div class="tab-panel" id="tab-faq">
+
+    <div class="accordion" id="accordion">
+
+      <div class="accordion-item">
+        <button class="accordion-btn" aria-expanded="false">
+          <span class="accordion-q">When will my order be dispatched?</span>
+          <span class="accordion-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          <p class="accordion-inner">Orders placed before 1pm Monday to Friday are dispatched the same day. Orders placed after 1pm, or at the weekend, are dispatched the next working day. You'll receive a dispatch email with a tracking link as soon as your parcel leaves us.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" aria-expanded="false">
+          <span class="accordion-q">Do you ship to my country?</span>
+          <span class="accordion-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          <p class="accordion-inner">We ship to over 40 countries worldwide, including all EU member states, the US, Canada, Australia, and New Zealand. If your country doesn't appear at checkout, please <a href="mailto:hello@tidalswimwear.com">get in touch</a> and we'll do our best to help.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" aria-expanded="false">
+          <span class="accordion-q">Will I have to pay customs or import duties?</span>
+          <span class="accordion-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          <p class="accordion-inner">For orders outside the UK, duties and import taxes may be applied by your country's customs authority. These charges are the responsibility of the recipient and are not included in our shipping fees. We recommend checking with your local customs office before ordering if you are unsure.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" aria-expanded="false">
+          <span class="accordion-q">Can I change or cancel my order?</span>
+          <span class="accordion-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          <p class="accordion-inner">We process orders quickly, so there is only a short window to make changes. Please <a href="mailto:hello@tidalswimwear.com">contact us immediately</a> if you need to amend or cancel an order. If your order has already been dispatched, you will need to follow our returns process once it arrives.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" aria-expanded="false">
+          <span class="accordion-q">My order arrived damaged. What do I do?</span>
+          <span class="accordion-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          <p class="accordion-inner">We're so sorry to hear this. Please email us at <a href="mailto:hello@tidalswimwear.com">hello@tidalswimwear.com</a> with your order number and a photo of the damage within 7 days of delivery. We'll arrange a replacement or full refund as quickly as possible — no need to return the damaged item.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" aria-expanded="false">
+          <span class="accordion-q">Can I return a sale item?</span>
+          <span class="accordion-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          <p class="accordion-inner">Sale items are eligible for exchange or store credit only — we are unable to offer refunds on reduced-price purchases. All other return conditions apply: items must be unworn, with tags attached and the hygiene liner intact.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn" aria-expanded="false">
+          <span class="accordion-q">How long do I have to return an item?</span>
+          <span class="accordion-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </button>
+        <div class="accordion-body">
+          <p class="accordion-inner">You have 30 days from the date of delivery to initiate a return. Please email us before sending anything back so we can provide your return label and log your request on our system.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="contact-cta">
+      <p class="cta-eyebrow">Still have a question?</p>
+      <h3>Our team loves to help</h3>
+      <p>We typically respond within one business day. You can also reach us on Instagram if that's easier.</p>
+      <a href="mailto:hello@tidalswimwear.com" class="btn-primary">Get in Touch</a>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="f-logo">TIDAL</span>
+      <p>Ethical swimwear designed in St Tropez and made with love in the United Kingdom.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="Claude_collection.html">One-Pieces</a></li>
+        <li><a href="Claude_collection.html">Tops</a></li>
+        <li><a href="Claude_collection.html">Bottoms</a></li>
+        <li><a href="#">The Archive</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>House</h4>
+      <ul>
+        <li><a href="tidal-swimwear.html#story">Our Story</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Pop-Ups</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="tidal-size-guide.html">Size Guide</a></li>
+        <li><a href="tidal-shipping-returns.html">Shipping</a></li>
+        <li><a href="tidal-shipping-returns.html">Returns</a></li>
+        <li><a href="tidal-swimwear.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Tidal Swimwear London · All rights reserved</div>
+</footer>
+
+<script>
+// TAB SWITCHING
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabPanels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ACCORDION
+document.querySelectorAll('.accordion-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.accordion-item');
+    const body = item.querySelector('.accordion-body');
+    const inner = item.querySelector('.accordion-inner');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.accordion-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.accordion-body').style.maxHeight = '0';
+      i.querySelector('.accordion-btn').setAttribute('aria-expanded', 'false');
+    });
+
+    if (!isOpen) {
+      item.classList.add('open');
+      body.style.maxHeight = inner.scrollHeight + 40 + 'px';
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+</script>
+</body>
+</html>
