@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Tidal Swimwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Italiana&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f1d3a;
+  --navy-soft: #1a2a4c;
+  --cream: #f4ede2;
+  --cream-warm: #faf3e6;
+  --sand: #e8dcc8;
+  --coral: #c8553d;
+  --toffee: #a47551;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --hairline: rgba(15,29,58,0.10);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ANNOUNCEMENT BAR */
+.announce {
+  background: var(--navy);
+  color: var(--cream);
+  text-align: center;
+  padding: 9px 20px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+/* NAV */
+nav {
+  background: rgba(244,237,226,0.96);
+  backdrop-filter: blur(12px);
+  padding: 10px 56px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--hairline);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: opacity 0.25s;
+}
+.nav-links a:hover { opacity: 0.5; }
+.nav-links a.active { border-bottom: 1px solid var(--navy); padding-bottom: 2px; }
+.logo {
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.logo .wave-logo { width: 265px; max-width: 10vw; height: auto; }
+.wave-logo path { fill: none; stroke-linecap: round; }
+.logo-mark {
+  font-family: 'Italiana', serif;
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--navy);
+  line-height: 1;
+  margin-top: 1px;
+}
+.logo-sub {
+  font-size: 6px;
+  letter-spacing: 0.5em;
+  color: var(--navy);
+  opacity: 0.55;
+  margin-top: 2px;
+}
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+.nav-right a {
+  color: var(--navy);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  transition: opacity 0.25s;
+}
+.nav-right a:hover { opacity: 0.5; }
+.cart-icon { position: relative; display: inline-flex; align-items: center; line-height: 0; }
+.cart-count {
+  position: absolute;
+  top: -7px; right: -9px;
+  background: var(--coral);
+  color: var(--cream);
+  font-size: 8px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  line-height: 1;
+}
+
+/* PAGE HEADER */
+.page-header {
+  background: var(--cream);
+  padding: 96px 56px 72px;
+  text-align: center;
+  position: relative;
+}
+.page-header .eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 28px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+.page-header h1 {
+  font-family: 'Italiana', serif;
+  font-size: clamp(3.4rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.015em;
+  color: var(--navy);
+  margin-bottom: 28px;
+}
+.page-header .header-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 1.6vw, 19px);
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+.page-header .header-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--coral);
+  margin: 22px auto;
+  opacity: 0.5;
+}
+
+/* CONTENT */
+.content-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 80px 56px 120px;
+}
+
+/* CONTACT GRID */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 0;
+  border: 1px solid var(--hairline);
+  margin-bottom: 72px;
+}
+
+/* LEFT INFO PANEL */
+.contact-info {
+  background: var(--navy);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.ci-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.ci-title {
+  font-family: 'Italiana', serif;
+  font-size: clamp(24px, 2.8vw, 36px);
+  color: var(--cream);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+.ci-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(244,237,226,0.65);
+  line-height: 1.7;
+}
+.ci-divider {
+  width: 32px;
+  height: 1px;
+  background: rgba(244,237,226,0.15);
+}
+.ci-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ci-detail-label {
+  font-size: 9px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: rgba(244,237,226,0.35);
+  font-family: 'Inter', sans-serif;
+}
+.ci-detail-value {
+  font-size: 13px;
+  color: rgba(244,237,226,0.75);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+}
+.ci-detail-value a {
+  color: rgba(244,237,226,0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.ci-detail-value a:hover { color: var(--cream); }
+
+/* RIGHT FORM PANEL */
+.contact-form-wrap {
+  padding: 56px 56px;
+  background: var(--cream-warm);
+}
+.form-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  margin-bottom: 28px;
+}
+
+/* FORM FIELDS */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.form-group.full { grid-column: 1 / -1; }
+label {
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  background: var(--cream);
+  border: 1px solid var(--hairline);
+  border-bottom: 1px solid rgba(15,29,58,0.2);
+  padding: 14px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--navy);
+  background: #fff;
+}
+input::placeholder,
+textarea::placeholder { color: rgba(107,107,107,0.5); }
+textarea {
+  resize: vertical;
+  min-height: 160px;
+  line-height: 1.7;
+}
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230f1d3a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+/* SUBMIT */
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.form-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--muted);
+}
+.submit-btn {
+  background: var(--navy);
+  color: var(--cream);
+  border: none;
+  padding: 16px 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.25s, opacity 0.25s;
+  white-space: nowrap;
+}
+.submit-btn:hover { background: var(--navy-soft); }
+.submit-btn:active { opacity: 0.8; }
+
+/* SUCCESS STATE */
+.success-msg {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+}
+.success-msg .s-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--coral);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--coral);
+}
+.success-msg h3 {
+  font-family: 'Italiana', serif;
+  font-size: 28px;
+  color: var(--navy);
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+.success-msg p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+/* RESPONSE BAND */
+.response-band {
+  background: var(--sand);
+  border: 1px solid var(--hairline);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 72px;
+  flex-wrap: wrap;
+}
+.rb-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 200px;
+}
+.rb-icon {
+  color: var(--coral);
+  flex-shrink: 0;
+}
+.rb-label {
+  font-size: 9px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 4px;
+}
+.rb-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--navy);
+}
+.rb-sep {
+  width: 1px;
+  height: 48px;
+  background: var(--hairline);
+  flex-shrink: 0;
+}
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 72px 56px 36px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 40px;
+  border-bottom: 1px solid rgba(244,237,226,0.1);
+  padding-bottom: 56px;
+  margin-bottom: 28px;
+}
+.footer-brand .f-logo {
+  font-family: 'Italiana', serif;
+  font-size: 22px;
+  letter-spacing: 0.22em;
+  display: block;
+  margin-bottom: 14px;
+}
+.footer-brand p {
+  font-size: 12px;
+  color: rgba(244,237,226,0.5);
+  line-height: 1.7;
+  max-width: 240px;
+}
+.footer-col h4 {
+  font-size: 9px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 18px;
+  color: var(--sand);
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 11px; }
+.footer-col ul li a {
+  color: rgba(244,237,226,0.5);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 300;
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--cream); }
+.footer-bottom {
+  font-size: 10px;
+  color: rgba(244,237,226,0.3);
+  letter-spacing: 0.12em;
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 8px 24px; grid-template-columns: auto 1fr auto; }
+  .nav-links { display: none; }
+  .logo .wave-logo { width: 110px; }
+  .page-header { padding: 64px 24px 48px; }
+  .content-wrap { padding: 56px 24px 80px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-info { padding: 40px 32px; }
+  .contact-form-wrap { padding: 40px 32px; }
+  .form-row { grid-template-columns: 1fr; }
+  .response-band { padding: 28px 32px; flex-direction: column; gap: 24px; }
+  .rb-sep { display: none; }
+  footer { padding: 56px 24px 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .form-footer { flex-direction: column; align-items: flex-start; }
+  .submit-btn { width: 100%; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+  <defs>
+    <symbol id="tidal-wave" viewBox="0 0 1900 1900">
+      <path d="M180 880 Q 400 760 620 770" stroke-width="6" />
+      <path d="M620 770 Q 820 650 980 820 Q 1100 940 1240 860 Q 1380 780 1380 660 Q 1380 540 1280 530 Q 1200 525 1200 605 Q 1200 680 1290 700 Q 1340 712 1360 700" stroke-width="22" />
+      <path d="M1360 700 Q 1480 760 1700 820" stroke-width="6" />
+    </symbol>
+  </defs>
+</svg>
+
+<div class="announce">Free UK shipping on orders over £50 · Easy 30-day returns</div>
+
+<nav>
+  <ul class="nav-links">
+    <li><a href="collection.html">Collection</a></li>
+    <li><a href="Tidal-lookbook.html">Look Book</a></li>
+    <li><a href="Our-story.html">Our Story</a></li>
+    <li><a class="active" href="Tidal-contact.html">Contact</a></li>
+  </ul>
+  <a href="index.html" class="logo">
+    <svg class="wave-logo" viewBox="0 0 1900 600" preserveAspectRatio="xMidYMid meet" aria-label="Tidal Swimwear">
+      <use href="#tidal-wave" x="0" y="200" width="1900" height="600" style="stroke:var(--navy);fill:none;"/>
+    </svg>
+    <div class="logo-mark">TIDAL</div>
+    <span class="logo-sub">Swimwear · London</span>
+  </a>
+  <div class="nav-right">
+    <a href="#" aria-label="Search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </a>
+    <a href="#" aria-label="Account">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+    </a>
+    <a href="#" class="cart-icon" aria-label="Shopping bag">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M5 7h14l-1.3 13a1.8 1.8 0 0 1-1.8 1.6H8.1a1.8 1.8 0 0 1-1.8-1.6L5 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+      <span class="cart-count">0</span>
+    </a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <p class="eyebrow">We'd love to hear from you</p>
+  <h1>Contact</h1>
+  <div class="header-divider"></div>
+  <p class="header-tagline">Whether it's a question about fit, an order query, or simply a hello — our team responds within one business day.</p>
+</header>
+
+<div class="content-wrap">
+
+  <!-- CONTACT GRID: info left, form right -->
+  <div class="contact-grid">
+
+    <!-- LEFT: Info -->
+    <div class="contact-info">
+      <div>
+        <p class="ci-eyebrow">Get in touch</p>
+        <h2 class="ci-title">How can we help?</h2>
+        <p class="ci-body">Our small team is based in London and genuinely loves hearing from you — whether it's a sizing question, a return request, or a note to say hello.</p>
+      </div>
+      <div class="ci-divider"></div>
+      <div class="ci-detail">
+        <p class="ci-detail-label">Sizing &amp; Fit</p>
+        <p class="ci-detail-value">Happy to help you find your perfect size before you order.</p>
+      </div>
+      <div class="ci-detail">
+        <p class="ci-detail-label">Orders &amp; Returns</p>
+        <p class="ci-detail-value">Track your parcel, amend an order, or start a return.</p>
+      </div>
+      <div class="ci-detail">
+        <p class="ci-detail-label">Wholesale &amp; Press</p>
+        <p class="ci-detail-value">For stockist and press enquiries, please mention this in your message.</p>
+      </div>
+      <div class="ci-divider"></div>
+      <div class="ci-detail">
+        <p class="ci-detail-label">Email</p>
+        <p class="ci-detail-value"><a href="mailto:hello@tidal-swimwear.co.uk">hello@tidal-swimwear.co.uk</a></p>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="contact-form-wrap">
+      <p class="form-eyebrow">Send us a message</p>
+
+      <div id="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="Emily">
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Chichester">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="hello@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" placeholder="Tell us how we can help…"></textarea>
+        </div>
+
+        <div class="form-footer">
+          <p class="form-note">We'll reply as soon as we can.</p>
+          <button class="submit-btn" onclick="handleSubmit()">Send Message</button>
+        </div>
+      </div>
+
+      <!-- Success state -->
+      <div class="success-msg" id="success-msg">
+        <div class="s-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Message Sent</h3>
+        <p>Thank you for reaching out. We'll be in touch within one business day.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="f-logo">TIDAL</span>
+      <p>Ethical swimwear designed in St Tropez and made with love in the United Kingdom.</p>
+    </div>
+        <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="collection.html">One-Pieces</a></li>
+        <li><a href="collection.html">Tops</a></li>
+        <li><a href="collection.html">Bottoms</a></li>
+      </ul>
+    </div>
+        <div class="footer-col">
+      <h4>House</h4>
+      <ul>
+        <li><a href="Our-story.html">Our Story</a></li>
+        <li><a href="Tidal-lookbook.html">Look Book</a></li>
+        <li><a href="Tidal-press-popups.html">Press &amp; Pop-Ups</a></li>
+      </ul>
+    </div>
+        <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="Tidal-size-guide.html">Size Guide</a></li>
+        <li><a href="Tidal-shipping-returns.html">Shipping</a></li>
+        <li><a href="Tidal-shipping-returns.html">Returns</a></li>
+        <li><a href="Tidal-contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Tidal Swimwear London · All rights reserved</div>
+</footer>
+
+<script>
+function handleSubmit() {
+  const fname   = document.getElementById('fname').value.trim();
+  const lname   = document.getElementById('lname').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (!fname || !email || !message) {
+    alert('Please fill in your name, email and message before sending.');
+    return;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  const bodyText = `Name: ${fname} ${lname}\nEmail: ${email}\n\n${message}`;
+  const mailtoLink = `mailto:hello@tidal-swimwear.co.uk?subject=${encodeURIComponent('Website Enquiry')}&body=${encodeURIComponent(bodyText)}`;
+  window.location.href = mailtoLink;
+
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+}
+</script>
+</body>
+</html>
