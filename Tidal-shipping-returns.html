@@ -43,36 +43,48 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* NAV */
-nav {
-  background: rgba(244,237,226,0.96);
-  backdrop-filter: blur(12px);
-  padding: 10px 56px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  border-bottom: 1px solid var(--hairline);
-  position: sticky;
-  top: 0;
-  z-index: 200;
-}
-.nav-links {
-  display: flex;
-  gap: 36px;
-  list-style: none;
-  align-items: center;
-}
-.nav-links a {
-  color: var(--navy);
-  text-decoration: none;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-weight: 400;
-  transition: opacity 0.25s;
-}
-.nav-links a:hover { opacity: 0.5; }
-.nav-links a.active { border-bottom: 1px solid var(--navy); padding-bottom: 2px; }
+/* NAV */  nav {
+    background: rgba(244,237,226,0.96);
+    backdrop-filter: blur(12px);
+    padding: 10px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(15,29,58,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .nav-left, .nav-right-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+    flex: 1;
+  }
+  .nav-right-links {
+    justify-content: flex-end;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a, .nav-left a, .nav-right-links a {
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: opacity 0.25s;
+  }
+  .nav-links a:hover, .nav-left a:hover, .nav-right-links a:hover { opacity: 0.5; }
+  .nav-links a.active, .nav-left a.active, .nav-right-links a.active {
+    border-bottom: 1px solid var(--navy);
+    padding-bottom: 2px;
+  }
 .logo {
   text-align: center;
   text-decoration: none;
@@ -613,14 +625,12 @@ footer {
   </defs>
 </svg>
 
-<div class="announce">Free UK shipping on orders over £50 · Easy 30-day returns</div>
+<div class="announce">Complimentary UK shipping on orders over £50 · Easy 30-day returns</div>
 
 <nav>
-  <ul class="nav-links">
+  <ul class="nav-links nav-left">
     <li><a href="collection.html">Collection</a></li>
-    <li><a href="Tidal-lookbook.html">Look Book</a></li>
-    <li><a href="Our-story.html">Our Story</a></li>
-    <li><a href="Tidal-contact.html">Contact</a></li>
+    <li><a href="look%20book.html">Look Book</a></li>
   </ul>
   <a href="index.html" class="logo">
     <svg class="wave-logo" viewBox="0 0 1900 600" preserveAspectRatio="xMidYMid meet" aria-label="Tidal Swimwear">
@@ -629,6 +639,10 @@ footer {
     <div class="logo-mark">TIDAL</div>
     <span class="logo-sub">Swimwear · London</span>
   </a>
+  <ul class="nav-links nav-right-links">
+    <li><a href="Our-story.html">Our Story</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
   <div class="nav-right">
     <a href="#" aria-label="Search">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -745,7 +759,7 @@ footer {
     <div class="info-band">
       <div class="info-band-item">
         <p class="ib-eyebrow">Packaging</p>
-        <h4>Wrapped with care</h4>
+        <h4>Shop</h4>
         <p>Every Tidal order is wrapped in tissue and nestled in our signature recycled kraft box. We use plastic-free packaging throughout — no polybags, no excess. Gift notes are always available at checkout.</p>
       </div>
       <div class="info-band-item">
@@ -939,8 +953,8 @@ footer {
       <h4>House</h4>
       <ul>
         <li><a href="Our-story.html">Our Story</a></li>
-        <li><a href="Tidal-lookbook.html">Look Book</a></li>
-        <li><a href="Tidal-press-popups.html">Press &amp; Pop-Ups</a></li>
+        <li><a href="look%20book.html">Look Book</a></li>
+        <li><a href="Press%20%26%20Pop-ups.html">Press &amp; Pop-Ups</a></li>
       </ul>
     </div>
         <div class="footer-col">
@@ -949,7 +963,7 @@ footer {
         <li><a href="Tidal-size-guide.html">Size Guide</a></li>
         <li><a href="Tidal-shipping-returns.html">Shipping</a></li>
         <li><a href="Tidal-shipping-returns.html">Returns</a></li>
-        <li><a href="Tidal-contact.html">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </div>
