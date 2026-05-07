@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Press &amp; Pop-Ups — Tidal Swimwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Italiana&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f1d3a;
+  --navy-soft: #1a2a4c;
+  --cream: #f4ede2;
+  --cream-warm: #faf3e6;
+  --sand: #e8dcc8;
+  --coral: #c8553d;
+  --toffee: #a47551;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --hairline: rgba(15,29,58,0.10);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ANNOUNCEMENT BAR */
+.announce {
+  background: var(--navy);
+  color: var(--cream);
+  text-align: center;
+  padding: 9px 20px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+/* NAV */
+nav {
+  background: rgba(244,237,226,0.96);
+  backdrop-filter: blur(12px);
+  padding: 10px 56px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--hairline);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: opacity 0.25s;
+}
+.nav-links a:hover { opacity: 0.5; }
+.nav-links a.active { border-bottom: 1px solid var(--navy); padding-bottom: 2px; }
+.logo {
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.logo .wave-logo { width: 265px; max-width: 10vw; height: auto; }
+.wave-logo path { fill: none; stroke-linecap: round; }
+.logo-mark {
+  font-family: 'Italiana', serif;
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--navy);
+  line-height: 1;
+  margin-top: 1px;
+}
+.logo-sub {
+  font-size: 6px;
+  letter-spacing: 0.5em;
+  color: var(--navy);
+  opacity: 0.55;
+  margin-top: 2px;
+}
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+.nav-right a {
+  color: var(--navy);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  transition: opacity 0.25s;
+}
+.nav-right a:hover { opacity: 0.5; }
+.cart-icon { position: relative; display: inline-flex; align-items: center; line-height: 0; }
+.cart-count {
+  position: absolute;
+  top: -7px; right: -9px;
+  background: var(--coral);
+  color: var(--cream);
+  font-size: 8px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  line-height: 1;
+}
+
+/* PAGE HEADER */
+.page-header {
+  background: var(--cream);
+  padding: 96px 56px 72px;
+  text-align: center;
+}
+.page-header .eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 28px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+.page-header h1 {
+  font-family: 'Italiana', serif;
+  font-size: clamp(3.4rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.015em;
+  color: var(--navy);
+  margin-bottom: 28px;
+}
+.page-header .header-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(16px, 1.6vw, 19px);
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+.page-header .header-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--coral);
+  margin: 22px auto;
+  opacity: 0.5;
+}
+
+/* TAB NAV */
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding: 0 56px;
+  background: var(--cream);
+}
+.tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 18px 36px 16px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s;
+  margin-bottom: -1px;
+  font-weight: 400;
+}
+.tab-btn.active { color: var(--navy); border-bottom-color: var(--navy); }
+.tab-btn:hover { color: var(--navy); }
+
+/* CONTENT */
+.content-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 80px 56px 120px;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* SECTION HEADER */
+.section-title {
+  font-family: 'Italiana', serif;
+  font-size: clamp(22px, 2.6vw, 34px);
+  color: var(--navy);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
+}
+.section-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+/* PRESS PLACEHOLDER GRID */
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--hairline);
+  margin-bottom: 72px;
+}
+.press-card {
+  padding: 40px 36px;
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.press-card:nth-child(3n) { border-right: none; }
+.press-card:nth-last-child(-n+3) { border-bottom: none; }
+.press-pub {
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+.press-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--navy);
+  line-height: 1.55;
+}
+.press-date {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-top: auto;
+}
+
+/* PRESS ENQUIRY BAND */
+.press-enquiry {
+  background: var(--navy);
+  padding: 56px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 48px;
+  margin-bottom: 0;
+}
+.pe-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 12px;
+}
+.pe-title {
+  font-family: 'Italiana', serif;
+  font-size: clamp(22px, 2.4vw, 32px);
+  color: var(--cream);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+}
+.pe-body {
+  font-size: 13px;
+  color: rgba(244,237,226,0.6);
+  line-height: 1.75;
+  max-width: 520px;
+}
+.btn-press {
+  display: inline-block;
+  border: 1px solid rgba(244,237,226,0.35);
+  color: var(--cream);
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  white-space: nowrap;
+  transition: background 0.25s, border-color 0.25s;
+  flex-shrink: 0;
+}
+.btn-press:hover {
+  background: rgba(244,237,226,0.08);
+  border-color: rgba(244,237,226,0.65);
+}
+
+/* POP-UPS */
+.popups-intro {
+  margin-bottom: 56px;
+  max-width: 680px;
+}
+.popups-intro p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* POP-UP EVENTS */
+.events-list {
+  border: 1px solid var(--hairline);
+  margin-bottom: 72px;
+}
+.event-item {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  align-items: center;
+  gap: 40px;
+  padding: 32px 40px;
+  border-bottom: 1px solid var(--hairline);
+  transition: background 0.2s;
+}
+.event-item:last-child { border-bottom: none; }
+.event-item:hover { background: var(--cream-warm); }
+.event-date {
+  font-family: 'Italiana', serif;
+  font-size: 13px;
+  color: var(--coral);
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+.event-info {}
+.event-name {
+  font-family: 'Italiana', serif;
+  font-size: 22px;
+  color: var(--navy);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+.event-location {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.event-status {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  padding: 6px 14px;
+  border: 1px solid var(--hairline);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.event-status.upcoming {
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+/* NOTIFY BAND */
+.notify-band {
+  background: var(--sand);
+  border: 1px solid var(--hairline);
+  padding: 48px 56px;
+  text-align: center;
+}
+.notify-band .nb-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 16px;
+}
+.notify-band h3 {
+  font-family: 'Italiana', serif;
+  font-size: clamp(22px, 2.4vw, 32px);
+  color: var(--navy);
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.notify-band p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.notify-row {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.notify-row input[type="email"] {
+  flex: 1;
+  background: var(--cream);
+  border: 1px solid rgba(15,29,58,0.2);
+  border-right: none;
+  padding: 14px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--ink);
+  outline: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+.notify-row input::placeholder { color: rgba(107,107,107,0.5); }
+.notify-row input:focus { border-color: var(--navy); }
+.notify-btn {
+  background: var(--navy);
+  color: var(--cream);
+  border: none;
+  padding: 14px 28px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s;
+  white-space: nowrap;
+}
+.notify-btn:hover { background: var(--navy-soft); }
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 72px 56px 36px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 40px;
+  border-bottom: 1px solid rgba(244,237,226,0.1);
+  padding-bottom: 56px;
+  margin-bottom: 28px;
+}
+.footer-brand .f-logo {
+  font-family: 'Italiana', serif;
+  font-size: 22px;
+  letter-spacing: 0.22em;
+  display: block;
+  margin-bottom: 14px;
+}
+.footer-brand p {
+  font-size: 12px;
+  color: rgba(244,237,226,0.5);
+  line-height: 1.7;
+  max-width: 240px;
+}
+.footer-col h4 {
+  font-size: 9px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 18px;
+  color: var(--sand);
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 11px; }
+.footer-col ul li a {
+  color: rgba(244,237,226,0.5);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 300;
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--cream); }
+.footer-bottom {
+  font-size: 10px;
+  color: rgba(244,237,226,0.3);
+  letter-spacing: 0.12em;
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav { padding: 8px 24px; grid-template-columns: auto 1fr auto; }
+  .nav-links { display: none; }
+  .logo .wave-logo { width: 110px; }
+  .page-header { padding: 64px 24px 48px; }
+  .content-wrap { padding: 56px 24px 80px; }
+  .press-grid { grid-template-columns: 1fr; }
+  .press-card { border-right: none; }
+  .press-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--hairline); }
+  .press-card:last-child { border-bottom: none; }
+  .press-enquiry { grid-template-columns: 1fr; gap: 28px; padding: 40px 32px; }
+  .event-item { grid-template-columns: 1fr; gap: 8px; padding: 28px 24px; }
+  .event-status { align-self: flex-start; }
+  .notify-band { padding: 40px 24px; }
+  .notify-row { flex-direction: column; }
+  .notify-row input { border-right: 1px solid rgba(15,29,58,0.2); border-bottom: none; }
+  footer { padding: 56px 24px 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .tab-nav { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+  <defs>
+    <symbol id="tidal-wave" viewBox="0 0 1900 1900">
+      <path d="M180 880 Q 400 760 620 770" stroke-width="6" />
+      <path d="M620 770 Q 820 650 980 820 Q 1100 940 1240 860 Q 1380 780 1380 660 Q 1380 540 1280 530 Q 1200 525 1200 605 Q 1200 680 1290 700 Q 1340 712 1360 700" stroke-width="22" />
+      <path d="M1360 700 Q 1480 760 1700 820" stroke-width="6" />
+    </symbol>
+  </defs>
+</svg>
+
+<div class="announce">Free UK shipping on orders over £50 · Easy 30-day returns</div>
+
+<nav>
+  <ul class="nav-links">
+    <li><a href="collection.html">Collection</a></li>
+    <li><a href="Tidal-lookbook.html">Look Book</a></li>
+    <li><a href="Our-story.html">Our Story</a></li>
+    <li><a href="Tidal-contact.html">Contact</a></li>
+  </ul>
+  <a href="index.html" class="logo">
+    <svg class="wave-logo" viewBox="0 0 1900 600" preserveAspectRatio="xMidYMid meet" aria-label="Tidal Swimwear">
+      <use href="#tidal-wave" x="0" y="200" width="1900" height="600" style="stroke:var(--navy);fill:none;"/>
+    </svg>
+    <div class="logo-mark">TIDAL</div>
+    <span class="logo-sub">Swimwear · London</span>
+  </a>
+  <div class="nav-right">
+    <a href="#" aria-label="Search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </a>
+    <a href="#" aria-label="Account">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+    </a>
+    <a href="#" class="cart-icon" aria-label="Shopping bag">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M5 7h14l-1.3 13a1.8 1.8 0 0 1-1.8 1.6H8.1a1.8 1.8 0 0 1-1.8-1.6L5 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+      <span class="cart-count">0</span>
+    </a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <p class="eyebrow">In the press &amp; in person</p>
+  <h1>Press &amp; Pop-Ups</h1>
+  <div class="header-divider"></div>
+  <p class="header-tagline">From editorial features to seaside pop-ups — find us where the water meets the world.</p>
+</header>
+
+<div class="tab-nav">
+  <button class="tab-btn active" data-tab="press">Press</button>
+  <button class="tab-btn" data-tab="popups">Pop-Ups</button>
+</div>
+
+<div class="content-wrap">
+
+  <!-- PRESS PANEL -->
+  <div class="tab-panel active" id="tab-press">
+
+    <p class="section-title">As Seen In</p>
+    <p class="section-note">A selection of our favourite features and mentions.</p>
+
+    <div class="press-grid">
+      <div class="press-card">
+        <p class="press-pub">Placeholder</p>
+        <p class="press-quote">"Your press quote will go here — drop in publication name, quote and date."</p>
+        <p class="press-date">2026</p>
+      </div>
+      <div class="press-card">
+        <p class="press-pub">Placeholder</p>
+        <p class="press-quote">"A second feature quote can sit here alongside the publication it appeared in."</p>
+        <p class="press-date">2026</p>
+      </div>
+      <div class="press-card">
+        <p class="press-pub">Placeholder</p>
+        <p class="press-quote">"Add as many press cards as you need — the grid will fill in naturally."</p>
+        <p class="press-date">2026</p>
+      </div>
+    </div>
+
+    <div class="press-enquiry">
+      <div>
+        <p class="pe-eyebrow">Press &amp; Editorial</p>
+        <p class="pe-title">Samples &amp; Enquiries</p>
+        <p class="pe-body">For press requests, editorial loans, collaboration proposals or interview enquiries, please reach out directly. We aim to respond to all press requests within two business days.</p>
+      </div>
+      <a href="mailto:hello@tidal-swimwear.co.uk?subject=Press%20Enquiry" class="btn-press">Get in Touch</a>
+    </div>
+
+  </div>
+
+  <!-- POP-UPS PANEL -->
+  <div class="tab-panel" id="tab-popups">
+
+    <div class="popups-intro">
+      <p class="section-title">Find Us In Person</p>
+      <p class="section-note">We believe in the joy of trying things on. Our pop-ups bring the full collection — and the team — to you.</p>
+      <p>From the South of France to the English coast, we set up shop in beautiful locations throughout the season. All pieces from the current collection are available to try and take away on the day.</p>
+    </div>
+
+    <div class="events-list">
+      <div class="event-item">
+        <div class="event-date">TBC<br>2026</div>
+        <div class="event-info">
+          <p class="event-name">Summer Pop-Up</p>
+          <p class="event-location">Location to be announced</p>
+        </div>
+        <span class="event-status upcoming">Upcoming</span>
+      </div>
+      <div class="event-item">
+        <div class="event-date">TBC<br>2026</div>
+        <div class="event-info">
+          <p class="event-name">Pop-Up</p>
+          <p class="event-location">Location to be announced</p>
+        </div>
+        <span class="event-status upcoming">Upcoming</span>
+      </div>
+    </div>
+
+    <div class="notify-band">
+      <p class="nb-eyebrow">Never miss a pop-up</p>
+      <h3>Stay in the loop</h3>
+      <p>Be the first to hear about new dates, locations and early access.</p>
+      <div class="notify-row">
+        <input type="email" placeholder="Your email address">
+        <button class="notify-btn">Notify Me</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="f-logo">TIDAL</span>
+      <p>Ethical swimwear designed in St Tropez and made with love in the United Kingdom.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="collection.html">One-Pieces</a></li>
+        <li><a href="collection.html">Tops</a></li>
+        <li><a href="collection.html">Bottoms</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>House</h4>
+      <ul>
+        <li><a href="Our-story.html">Our Story</a></li>
+        <li><a href="Tidal-lookbook.html">Look Book</a></li>
+        <li><a href="Tidal-press-popups.html">Press &amp; Pop-Ups</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="Tidal-size-guide.html">Size Guide</a></li>
+        <li><a href="Tidal-shipping-returns.html">Shipping</a></li>
+        <li><a href="Tidal-shipping-returns.html">Returns</a></li>
+        <li><a href="Tidal-contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Tidal Swimwear London · All rights reserved</div>
+</footer>
+
+<script>
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    tabPanels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
