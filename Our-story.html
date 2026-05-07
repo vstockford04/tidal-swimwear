@@ -68,11 +68,24 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--navy);
+  gap: 2px;
 }
-.wave-logo { width: 90px; height: 22px; margin-bottom: 2px; }
-.logo-mark { font-family: 'Italiana', serif; font-size: 22px; letter-spacing: 0.4em; color: var(--navy); }
-.logo-sub { font-size: 8px; letter-spacing: 0.32em; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+.logo .wave-logo { width: 265px; max-width: 10vw; height: auto; }
+.logo-mark {
+  font-family: 'Italiana', serif;
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--navy);
+  line-height: 1;
+  margin-top: 1px;
+}
+.logo-sub {
+  font-size: 6px;
+  letter-spacing: 0.5em;
+  color: var(--navy);
+  opacity: 0.55;
+  margin-top: 2px;
+}
 .nav-right { display: flex; gap: 22px; align-items: center; justify-content: flex-end; color: var(--navy); }
 .nav-right a { color: var(--navy); text-decoration: none; position: relative; }
 .cart-count {
@@ -110,9 +123,140 @@ footer { background: var(--navy); color: var(--cream); padding: 80px 56px 32px; 
   footer { padding: 56px 24px 28px; }
 }
 @media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* ── OUR STORY PAGE ── */
+.story-hero {
+  text-align: center;
+  padding: 120px 24px 80px;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.story-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: rgba(244,237,226,0.15);
+}
+.story-hero .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(244,237,226,0.55);
+  margin-bottom: 20px;
+}
+.story-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+}
+.story-body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 80px 24px 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+.story-intro p,
+.story-text p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(19px, 2.4vw, 24px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 2;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+.story-text p + p {
+  margin-top: 28px;
+}
+.story-image-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.story-img {
+  width: 100%;
+  max-width: 580px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 2px;
+  filter: sepia(8%) contrast(0.97);
+}
+.story-caption {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .story-hero { padding: 70px 20px 40px; }
+  .story-body { padding: 60px 20px 80px; gap: 40px; }
+}
+
+.story-box {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--navy);
+  border-radius: 2px;
+  padding: 48px 52px;
+}
+.story-pull {
+  background: var(--navy);
+  padding: 48px 52px;
+  border-radius: 2px;
+}
+.story-pull p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.6vw, 28px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.7;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.story-placeholder-img {
+  background: var(--navy);
+  opacity: 0.15;
+  border-radius: 2px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.placeholder-label {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--navy);
+  text-align: center;
+  opacity: 0.5;
+}
+@media (max-width: 600px) {
+  .story-box { padding: 32px 24px; }
+  .story-pull { padding: 36px 24px; }
+}
 </style>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+  <defs>
+    <symbol id="tidal-wave" viewBox="0 0 1900 1900">
+      <path d="M180 880 Q 400 760 620 770" stroke-width="6" />
+      <path d="M620 770 Q 820 650 980 820 Q 1100 940 1240 860 Q 1380 780 1380 660 Q 1380 540 1280 530 Q 1200 525 1200 605 Q 1200 680 1290 700 Q 1340 712 1360 700" stroke-width="22" />
+      <path d="M1360 700 Q 1480 760 1700 820" stroke-width="6" />
+    </symbol>
+  </defs>
+</svg>
 
 <div class="announce">Complimentary UK shipping on orders over £80&nbsp;&nbsp;·&nbsp;&nbsp;Designed in St Tropez</div>
 
@@ -123,10 +267,10 @@ footer { background: var(--navy); color: var(--cream); padding: 80px 56px 32px; 
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <a href="index.html" class="logo">
-    <svg class="wave-logo" viewBox="0 0 265 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M2 14 C20 2, 40 26, 60 14 C80 2, 100 26, 120 14 C140 2, 160 26, 180 14 C200 2, 220 26, 240 14 C252 8, 258 14, 263 14" stroke="#0f1d3a" stroke-width="1.5"/>
+    <svg class="wave-logo" viewBox="0 0 1900 600" preserveAspectRatio="xMidYMid meet" aria-label="Tidal Swimwear">
+      <use href="#tidal-wave" x="0" y="200" width="1900" height="600" style="stroke:var(--navy);fill:none;"/>
     </svg>
-    <span class="logo-mark">TIDAL</span>
+    <div class="logo-mark">TIDAL</div>
     <span class="logo-sub">Swimwear · London</span>
   </a>
   <div class="nav-right">
@@ -143,10 +287,30 @@ footer { background: var(--navy); color: var(--cream); padding: 80px 56px 32px; 
   </div>
 </nav>
 
-<section class="placeholder">
-  <p class="eyebrow">Coming Soon</p>
-  <h1>Our Story</h1>
-  <p>This page is being prepared. Please check back soon.</p>
+<section class="story-hero">
+  <p class="eyebrow">Our Story</p>
+  <h1>Where it all began</h1>
+</section>
+
+<section class="story-body">
+  <div class="story-intro story-box">
+    <p>Tidal Swimwear began where so many of my favourite memories were made — at my family's house in St Tropez, summers spent in the sun with my two younger sisters, days that seemed to stretch on forever by the sea. Designing swimwear that captured the feeling of those summers felt like the most natural thing in the world. Each piece is sketched there, in the place that started it all, before travelling home to be brought to life in a small family-run atelier on the Dorset coast.</p>
+  </div>
+
+  <div class="story-image-wrap">
+    <img src="/images/IMG_0572.jpeg" alt="Sisters in the garden" class="story-img">
+
+  </div>
+
+  <div class="story-placeholder-img">
+    <p class="placeholder-label">Photo coming soon — the house in St Tropez</p>
+  </div>
+
+  <div class="story-text story-box">
+    <p>We work only with the finest recycled Italian Lycra, transforming something discarded into something quietly luxurious. Every piece is cut, sewn, and finished by hand — considered, intentional, and never rushed. It's a slower way of making swimwear, but we wouldn't have it any other way.</p>
+
+    <p>Tidal is built on the belief that the best things in life are the ones made with love and made to last. We hope our pieces will become part of your own summers, your own memories, and the trips you'll one day tell your sisters, daughters, or dearest friends about.</p>
+  </div>
 </section>
 
 <footer>
