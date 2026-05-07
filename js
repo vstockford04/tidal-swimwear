@@ -25,8 +25,8 @@
  * and selected size from .size-btn.active — these already exist in your HTML.
  */
 
-const SHOPIFY_DOMAIN   = 'tidal-swimwear-2019.myshopify.com';
-const STOREFRONT_TOKEN = 'atkn_e5e2fd5aabacbd99d869a350e49af1642487037976c2b40d8b363b2b3b48dc7a';
+const SHOPIFY_DOMAIN   = 'xfqw4u-tr.myshopify.com';
+const STOREFRONT_TOKEN = '95c5ba0cd35c8aab35d6b2a068d370d3';
 const API_URL          = `https://${SHOPIFY_DOMAIN}/api/2024-04/graphql.json`;
 
 /* ------------------------------------------------------------------ */
