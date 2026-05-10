@@ -1585,6 +1585,19 @@ footer {
   @media (max-width: 760px) {
     .feature-duo { grid-template-columns: 1fr; }
   }
+
+
+/* Returns policy paragraph */
+.returns-policy {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--ink, #1a1a1a);
+  max-width: 640px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
 </style>
 </head>
 <body>
@@ -1632,12 +1645,11 @@ footer {
 <p class="header-tagline">Thoughtful packaging, straightforward returns, and a team that genuinely wants you to love what you ordered.</p>
 </header>
 <!-- TAB NAV -->
-<div class="content-wrap"><div aria-label="Section" class="sub-nav" role="tablist">
-<button aria-selected="true" class="sub-nav-btn is-active" data-target="ship-returns" role="tab" type="button">Shipping &amp; Returns</button>
-<button aria-selected="false" class="sub-nav-btn" data-target="faq" role="tab" type="button">FAQ</button>
-</div>
+<div class="content-wrap">
 <!-- ======== SHIPPING PANEL ======== -->
-<div class="sub-section is-active" id="ship-returns"><div class="tab-panel active" id="tab-shipping">
+<!-- ======== RETURNS PANEL ======== -->
+<!-- ======== FAQ PANEL ======== -->
+<div class="tab-panel active" id="tab-shipping">
 <div class="destinations">
 <p class="section-title">Shipping Zones &amp; Rates</p>
 <p class="section-note">Duties and taxes on international orders may apply and are the responsibility of the recipient.</p>
@@ -1668,93 +1680,7 @@ footer {
 </div>
 </div>
 </div><div class="tab-panel" id="tab-returns">
-<div class="returns-simple">
-<p class="section-title">Returns</p>
-<p class="returns-line">Please email <a href="mailto:hello@tidal-swimwear.co.uk">hello@tidal-swimwear.co.uk</a> for the returns address.</p>
-</div>
-</div></div>
-<!-- ======== RETURNS PANEL ======== -->
-<!-- ======== FAQ PANEL ======== -->
-<div class="tab-panel sub-section" id="faq">
-<div class="accordion" id="accordion">
-<div class="accordion-item">
-<button aria-expanded="false" class="accordion-btn">
-<span class="accordion-q">When will my order be dispatched?</span>
-<span class="accordion-icon">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
-</span>
-</button>
-<div class="accordion-body">
-<p class="accordion-inner">Orders placed before 1pm Monday to Friday are dispatched the same day. Orders placed after 1pm, or at the weekend, are dispatched the next working day. You'll receive a dispatch email with a tracking link as soon as your parcel leaves us.</p>
-</div>
-</div>
-<div class="accordion-item">
-<button aria-expanded="false" class="accordion-btn">
-<span class="accordion-q">Do you ship to my country?</span>
-<span class="accordion-icon">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
-</span>
-</button>
-<div class="accordion-body">
-<p class="accordion-inner">We ship to over 40 countries worldwide, including all EU member states, the US, Canada, Australia, and New Zealand. If your country doesn't appear at checkout, please <a href="mailto:hello@tidalswimwear.com">get in touch</a> and we'll do our best to help.</p>
-</div>
-</div>
-<div class="accordion-item">
-<button aria-expanded="false" class="accordion-btn">
-<span class="accordion-q">Will I have to pay customs or import duties?</span>
-<span class="accordion-icon">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
-</span>
-</button>
-<div class="accordion-body">
-<p class="accordion-inner">For orders outside the UK, duties and import taxes may be applied by your country's customs authority. These charges are the responsibility of the recipient and are not included in our shipping fees. We recommend checking with your local customs office before ordering if you are unsure.</p>
-</div>
-</div>
-<div class="accordion-item">
-<button aria-expanded="false" class="accordion-btn">
-<span class="accordion-q">Can I change or cancel my order?</span>
-<span class="accordion-icon">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
-</span>
-</button>
-<div class="accordion-body">
-<p class="accordion-inner">We process orders quickly, so there is only a short window to make changes. Please <a href="mailto:hello@tidalswimwear.com">contact us immediately</a> if you need to amend or cancel an order. If your order has already been dispatched, you will need to follow our returns process once it arrives.</p>
-</div>
-</div>
-<div class="accordion-item">
-<button aria-expanded="false" class="accordion-btn">
-<span class="accordion-q">My order arrived damaged. What do I do?</span>
-<span class="accordion-icon">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
-</span>
-</button>
-<div class="accordion-body">
-<p class="accordion-inner">We're so sorry to hear this. Please email us at <a href="mailto:hello@tidalswimwear.com">hello@tidalswimwear.com</a> with your order number and a photo of the damage within 7 days of delivery. We'll arrange a replacement or full refund as quickly as possible — no need to return the damaged item.</p>
-</div>
-</div>
-<div class="accordion-item">
-<button aria-expanded="false" class="accordion-btn">
-<span class="accordion-q">Can I return a sale item?</span>
-<span class="accordion-icon">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
-</span>
-</button>
-<div class="accordion-body">
-<p class="accordion-inner">Sale items are eligible for exchange or store credit only — we are unable to offer refunds on reduced-price purchases. All other return conditions apply: items must be unworn, with tags attached and the hygiene liner intact.</p>
-</div>
-</div>
-<div class="accordion-item">
-<button aria-expanded="false" class="accordion-btn">
-<span class="accordion-q">How long do I have to return an item?</span>
-<span class="accordion-icon">
-<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
-</span>
-</button>
-<div class="accordion-body">
-<p class="accordion-inner">You have 30 days from the date of delivery to initiate a return. Please email us before sending anything back so we can provide your return label and log your request on our system.</p>
-</div>
-</div>
-</div>
+<div class="returns-simple"><p class="section-title">Returns</p><p class="returns-policy">You can return items up to 14 days from receipt of order. The return method and cost is at your discretion (we recommend tracked shipping) — we do not offer free returns. Please ensure all items are unworn, unwashed, and in their original condition with tags and sanitary stickers still attached.</p><p class="returns-line">Please email <a href="mailto:hello@tidal-swimwear.co.uk">hello@tidal-swimwear.co.uk</a> for the returns address.</p></div>
 </div></div>
 <footer>
 <div class="footer-brand">
@@ -1784,34 +1710,10 @@ footer {
 </div>
 <div class="footer-col">
 <h4>Help</h4>
-<ul>
-<li><a href="Tidal-size-guide.html">Size Guide</a></li>
-<li><a href="Tidal-shipping-returns.html">Shipping</a></li>
-<li><a href="Tidal-shipping-returns.html">Returns</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+<ul><li><a href="Tidal-size-guide.html">Size Guide</a></li><li><a href="Tidal-shipping-returns.html">Shipping &amp; Returns</a></li><li><a href="FAQ.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul>
 </div>
 </div>
 <div class="footer-bottom">© 2026 Tidal Swimwear London · All rights reserved</div>
 </footer>
-<script>
-(function(){
-  const btns = document.querySelectorAll('.sub-nav-btn');
-  const sections = document.querySelectorAll('.sub-section');
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.target;
-      btns.forEach(b => {
-        const active = (b.dataset.target === target);
-        b.classList.toggle('is-active', active);
-        b.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
-      sections.forEach(s => s.classList.toggle('is-active', s.id === target));
-      // Smooth scroll to top of the content area for clarity
-      const wrap = document.querySelector('.content-wrap');
-      if (wrap) wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-})();
-</script></body>
+</body>
 </html>
