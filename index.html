@@ -759,61 +759,20 @@
   .newsletter-form .btn:hover { background: var(--cream); color: var(--navy); border-color: var(--cream); }
 
   /* FOOTER */
-  footer { background: var(--navy-deep); color: var(--cream); padding: 80px 56px 36px; }
-  .footer-brand {
-    text-align: center;
-    margin-bottom: 64px;
-    padding-bottom: 56px;
-    border-bottom: 1px solid rgba(244,237,226,0.08);
-  }
-  .footer-brand .footer-logo-wave { width: 1750px; max-width: 100%; margin: 0 auto 14px; opacity: 0.85; display: block; }
-  .footer-brand .footer-logo-wave path { stroke: var(--cream); }
-  .footer-brand .logo-mark { color: var(--cream); font-size: 24px; }
-  .footer-brand .logo-mark .logo-name { color: var(--cream); font-size: 24px; font-family: 'Italiana', serif; letter-spacing: 0.4em; }
-  .footer-brand .logo-sub { color: rgba(244,237,226,0.55); display: block; margin-top: 6px; }
-  .footer-brand p {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 16px;
-    opacity: 0.55;
-    line-height: 1.7;
-    margin: 24px auto 0;
-    max-width: 380px;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 56px;
-    max-width: 1100px;
-    margin: 0 auto 64px;
-  }
-  .footer-col h4 {
-    font-size: 9px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    color: rgba(244,237,226,0.45);
-    font-weight: 400;
-  }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 13px; }
-  .footer-col a {
-    color: var(--cream);
-    text-decoration: none;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 17px;
-    opacity: 0.6;
-    transition: opacity 0.25s;
-  }
-  .footer-col a:hover { opacity: 1; }
-  .footer-bottom {
-    border-top: 1px solid rgba(244,237,226,0.08);
-    padding-top: 28px;
-    text-align: center;
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    opacity: 0.35;
-  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   /* SCROLL REVEAL */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.85s ease, transform 0.85s ease; }
@@ -829,7 +788,7 @@
     .divider-bar { margin: 4px 0; padding: 14px 0; }
     .values-grid { grid-template-columns: 1fr; gap: 40px; }
     .insta-grid { grid-template-columns: repeat(3, 1fr); }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
+    
     .shop-section, .instagram, .values { padding-left: 24px; padding-right: 24px; }
     .intro { padding: 80px 24px; }
     .shop-header { flex-direction: column; align-items: flex-start; gap: 20px; }
@@ -856,6 +815,96 @@
   @media (max-width: 760px) {
     .feature-duo { grid-template-columns: 1fr; }
   }
+
+/* ── SHARED FOOTER ── */
+footer {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 72px 56px 36px;
+}
+.footer-main {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(244,237,226,0.08);
+  margin-bottom: 28px;
+}
+.footer-brand {
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.footer-logo-wave {
+  width: 100%;
+  max-width: 220px;
+  opacity: 0.8;
+  display: block;
+  margin: 0 auto 10px;
+}
+.footer-logo-mark {
+  font-family: 'Italiana', serif;
+  font-size: 22px;
+  letter-spacing: 0.4em;
+  color: var(--cream);
+  line-height: 1;
+}
+.footer-logo-name {
+  font-family: 'Italiana', serif;
+  font-size: 22px;
+  letter-spacing: 0.4em;
+  color: var(--cream);
+}
+.footer-logo-sub {
+  font-size: 9px;
+  letter-spacing: 0.5em;
+  color: rgba(244,237,226,0.55);
+  margin-top: 4px;
+  display: block;
+}
+.footer-nav-col h4 {
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: rgba(244,237,226,0.45);
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+}
+.footer-nav-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-nav-col a {
+  color: var(--cream);
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  opacity: 0.6;
+  transition: opacity 0.25s;
+}
+.footer-nav-col a:hover { opacity: 1; }
+.footer-nav-right { text-align: right; }
+.footer-bottom {
+  border-top: 1px solid rgba(244,237,226,0.08);
+  padding-top: 28px;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.35;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+@media (max-width: 700px) {
+  footer { padding: 56px 24px 28px; }
+  .footer-main { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+  .footer-nav-right { text-align: center; }
+}
+
 </style>
 </head>
 <body>
@@ -1040,37 +1089,25 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">
-    <svg class="wave-logo footer-logo-wave" viewBox="0 0 1900 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <use href="#tidal-wave" x="0" y="200" width="1900" height="600" style="stroke:var(--cream);fill:none;"/>
-    </svg>
-    <div class="logo-mark">TIDAL <span class="logo-name">SWIMWEAR</span></div>
-    <span class="logo-sub">London</span>
-    <p>Ethical swimwear designed in St Tropez and made with love in the United Kingdom.</p>
-  </div>
-  <div class="footer-grid">
-    <div class="footer-col">
+  <div class="footer-main">
+    <div class="footer-nav-col footer-nav-left">
       <h4>Shop</h4>
       <ul>
-        <li><a href="collection.html">One-Pieces</a></li>
-        <li><a href="collection.html">Tops</a></li>
-        <li><a href="collection.html">Bottoms</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="look%20book.html">Look Book</a></li>
       </ul>
     </div>
-    <div class="footer-col">
+    <a href="index-2.html" class="footer-brand">
+      <svg class="wave-logo footer-logo-wave" viewBox="0 0 1900 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <use href="#tidal-wave" x="0" y="200" width="1900" height="600" style="stroke:var(--cream);fill:none;"/>
+      </svg>
+      <div class="footer-logo-mark">TIDAL <span class="footer-logo-name">SWIMWEAR</span></div>
+      <span class="footer-logo-sub">London</span>
+    </a>
+    <div class="footer-nav-col footer-nav-right">
       <h4>House</h4>
       <ul>
-        <li><a href="Our-story.html">Our Story</a></li>
-        <li><a href="look%20book.html">Look Book</a></li>
-        <li><a href="Press%20%26%20Pop-ups.html">Press &amp; Pop-Ups</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Help</h4>
-      <ul>
-        <li><a href="Tidal-size-guide.html">Size Guide</a></li>
-        <li><a href="Tidal-shipping-returns.html">Shipping</a></li>
-        <li><a href="Tidal-shipping-returns.html">Returns</a></li>
+        <li><a href="Our-story-3.html">Our Story</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
