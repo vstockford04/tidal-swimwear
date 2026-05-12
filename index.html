@@ -850,6 +850,281 @@
   @media (max-width: 760px) {
     .feature-duo { grid-template-columns: 1fr; }
   }
+
+
+
+
+/* === MOBILE: hamburger + drawer (no desktop impact) === */
+/* Hidden by default — desktop never sees these */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--navy);
+  align-items: center;
+  justify-content: center;
+}
+.mobile-menu-btn svg { display: block; width: 22px; height: 22px; }
+
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  background: rgba(244,237,226,0.98);
+  backdrop-filter: blur(12px);
+  z-index: 250;
+  transform: translateY(-100%);
+  transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
+  display: flex;
+  flex-direction: column;
+  padding: 80px 32px 32px;
+  visibility: hidden;
+}
+.mobile-drawer.is-open {
+  transform: translateY(0);
+  visibility: visible;
+}
+.mobile-drawer-close {
+  position: absolute;
+  top: 18px; right: 18px;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  color: var(--navy);
+  cursor: pointer;
+}
+.mobile-drawer-close svg { display: block; width: 22px; height: 22px; }
+.mobile-drawer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+}
+.mobile-drawer-links a {
+  display: block;
+  font-family: 'Italiana', serif;
+  font-size: 28px;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+  text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(15,29,58,0.08);
+}
+.mobile-drawer-heading {
+  margin-top: 32px;
+  margin-bottom: 8px;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--navy);
+  opacity: 0.5;
+  font-family: 'Inter', sans-serif;
+}
+.mobile-drawer-links-sm a {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 19px;
+  letter-spacing: 0.02em;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(15,29,58,0.06);
+}
+
+/* === MOBILE NAV LAYOUT (≤960px only) === */
+@media (max-width: 960px) {
+  nav {
+    padding: 10px 16px !important;
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+    align-items: center !important;
+    gap: 8px;
+  }
+  /* Hide desktop text-link rows */
+  .nav-links, .nav-left, .nav-right-links {
+    display: none !important;
+  }
+  /* Show hamburger */
+  .mobile-menu-btn { display: inline-flex; }
+  /* Centre logo */
+  .logo {
+    grid-column: 2 !important;
+    justify-self: center;
+  }
+  .logo .wave-logo { width: 130px !important; max-width: 30vw !important; }
+  .logo-mark { font-size: 12px !important; }
+  .logo-sub { font-size: 8px !important; letter-spacing: 0.4em !important; }
+  /* Keep icons in .nav-right-links visible — only hide text <li>s */
+  .nav-right-links {
+    display: flex !important;
+    grid-column: 3;
+    list-style: none;
+    gap: 14px;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-right-links > li:not(.nav-icon) { display: none !important; }
+  .nav-right-links > li.nav-icon {
+    display: inline-flex !important;
+    align-items: center;
+    line-height: 0;
+  }
+  .nav-right-links > li.nav-icon a {
+    color: var(--navy) !important;
+    display: inline-flex;
+    align-items: center;
+  }
+  .nav-right-links > li.nav-icon svg {
+    width: 18px; height: 18px; display: block;
+  }
+  .cart-count {
+    width: 14px; height: 14px; font-size: 8px; top: -6px; right: -8px;
+  }
+}
+@media (max-width: 480px) {
+  nav { padding: 8px 12px !important; }
+  .logo .wave-logo { width: 110px !important; max-width: 32vw !important; }
+  .nav-right-links { gap: 10px !important; }
+}
+
+
+/* === CANONICAL FOOTER (consistent spacing across all pages) === */
+footer {
+  background: var(--navy) !important;
+  color: var(--cream);
+  padding: 72px 56px 32px !important;
+  display: block !important;
+  margin-top: 0 !important;
+  border-top: 1px solid rgba(244,237,226,0.08);
+}
+footer .footer-main-wrap {
+  /* not used; reset just in case */
+}
+/* Make the footer itself a grid that hosts the brand + the link columns */
+footer > .footer-brand,
+footer > .footer-grid,
+footer > .footer-bottom {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Put brand + grid side by side */
+footer {
+  /* Use CSS grid on the footer itself for the top row */
+}
+footer > .footer-brand {
+  display: block;
+  text-align: left;
+  margin-bottom: 0;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(244,237,226,0.10);
+}
+footer > .footer-brand .footer-logo-wave,
+footer > .footer-brand .wave-logo {
+  width: 200px !important;
+  max-width: 200px !important;
+  margin: 0 0 14px !important;
+  display: block;
+}
+footer > .footer-brand .logo-mark {
+  font-family: 'Italiana', serif;
+  font-size: 20px !important;
+  letter-spacing: 0.32em;
+  color: var(--cream);
+  margin: 0;
+  line-height: 1.1;
+}
+footer > .footer-brand .logo-mark .logo-name {
+  font-family: 'Italiana', serif;
+  font-size: 20px;
+  letter-spacing: 0.32em;
+  margin-left: 6px;
+}
+footer > .footer-brand .logo-sub {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  color: rgba(244,237,226,0.6);
+  margin-top: 6px;
+  font-family: 'Inter', sans-serif;
+}
+footer > .footer-brand p {
+  font-size: 13px;
+  color: rgba(244,237,226,0.65);
+  line-height: 1.7;
+  margin-top: 16px;
+  max-width: 360px;
+}
+footer > .footer-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 60px !important;
+  padding-top: 56px;
+  padding-bottom: 56px;
+  margin: 0 auto !important;
+}
+footer .footer-col h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px !important;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--cream);
+  margin: 0 0 20px !important;
+  opacity: 0.85;
+}
+footer .footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+footer .footer-col ul li {
+  margin: 0 0 12px !important;
+}
+footer .footer-col ul li a {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(244,237,226,0.85);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s, color 0.2s;
+}
+footer .footer-col ul li a:hover { color: var(--cream); opacity: 1; }
+footer > .footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid rgba(244,237,226,0.10);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(244,237,226,0.4);
+  text-align: center;
+}
+
+
+/* === Footer brand: centre the wave and text together === */
+footer > .footer-brand {
+  text-align: center !important;
+}
+footer > .footer-brand .footer-logo-wave,
+footer > .footer-brand .wave-logo {
+  display: block !important;
+  width: 200px !important;
+  max-width: 200px !important;
+  margin: 0 auto 14px !important;
+}
+footer > .footer-brand .logo-mark,
+footer > .footer-brand .logo-sub {
+  text-align: center !important;
+}
+footer > .footer-brand p {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 360px !important;
+}
 </style>
 </head>
 <body>
@@ -869,7 +1144,7 @@
 <!-- ANNOUNCEMENT -->
 <div class="announce">Complimentary Shipping On All UK Orders</div>
 <!-- NAV -->
-<nav>
+<nav><button aria-label="Open menu" class="mobile-menu-btn" onclick="document.querySelector('.mobile-drawer').classList.add('is-open');document.body.style.overflow='hidden';" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg></button>
 <ul class="nav-links nav-left">
 <li><a href="collection.html">Collection</a></li>
 <li><a href="look%20book.html">Look Book</a></li>
@@ -895,7 +1170,26 @@
 <span class="cart-count">0</span>
 </a></li>
 </ul>
-</nav>
+</nav><div aria-label="Site menu" class="mobile-drawer" role="dialog">
+<button aria-label="Close menu" class="mobile-drawer-close" onclick="document.querySelector('.mobile-drawer').classList.remove('is-open');document.body.style.overflow='';" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" viewbox="0 0 24 24">
+<path d="M6 6l12 12"></path><path d="M6 18L18 6"></path>
+</svg>
+</button>
+<ul class="mobile-drawer-links">
+<li><a href="collection.html">Collection</a></li>
+<li><a href="look%20book.html">Look Book</a></li>
+<li><a href="Our-story.html">Our Story</a></li>
+<li><a href="Press___Pop-ups.html">Press &amp; Pop-Ups</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<p class="mobile-drawer-heading">Help</p>
+<ul class="mobile-drawer-links mobile-drawer-links-sm">
+<li><a href="Tidal-size-guide.html">Size Guide</a></li>
+<li><a href="Tidal-shipping-returns.html">Shipping &amp; Returns</a></li>
+<li><a href="FAQ.html">FAQ</a></li>
+</ul>
+</div>
 <!-- HERO -->
 <section class="hero">
 <div class="hero-content">
