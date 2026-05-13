@@ -1550,12 +1550,6 @@ img { max-width: 100%; }
   .nav-right { gap: 10px !important; }
 }
 
-/* === FOOTER / GRID MOBILE TIGHTENING === */
-
-  .footer-col ul { display: inline-block; text-align: left; }
-}
-
-
 /* === Drawer secondary group === */
 .mobile-drawer-heading {
   margin-top: 32px;
@@ -1936,6 +1930,33 @@ footer > .footer-brand p {
   margin-right: auto !important;
   max-width: 360px !important;
 }
+
+
+
+
+/* === Size guide: prevent column overflow on mobile === */
+@media (max-width: 700px) {
+  .size-table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 10.5px;
+  }
+  .size-table th, .size-table td {
+    padding: 8px 4px !important;
+    white-space: normal !important;
+    word-break: keep-all;
+    text-align: center;
+  }
+  .size-table thead th {
+    font-size: 9px !important;
+    letter-spacing: 0.05em !important;
+  }
+}
+@media (max-width: 420px) {
+  .size-table { font-size: 9.5px; }
+  .size-table th, .size-table td { padding: 7px 3px !important; }
+  .size-table thead th { font-size: 8px !important; }
+}
 </style>
 <meta content="#f4ede2" name="theme-color"/><meta content="light only" name="color-scheme"/></head>
 <body>
@@ -1981,7 +2002,7 @@ footer > .footer-brand p {
 <path d="M6 6l12 12"></path><path d="M6 18L18 6"></path>
 </svg>
 </button>
-<ul class="mobile-drawer-links"><li><a href="collection.html">Collection</a></li><li><a href="look%20book.html">Look Book</a></li><li><a href="Our-story.html">Our Story</a></li><li><a href="Press___Pop-ups.html">Press &amp; Pop-Ups</a></li><li><a href="contact.html">Contact</a></li></ul><p class="mobile-drawer-heading">Help</p><ul class="mobile-drawer-links mobile-drawer-links-sm"><li><a class="active" href="Tidal-size-guide.html">Size Guide</a></li><li><a href="Tidal-shipping-returns.html">Shipping &amp; Returns</a></li><li><a href="FAQ.html">FAQ</a></li></ul></div>
+<ul class="mobile-drawer-links"><li><a href="collection.html">Collection</a></li><li><a href="look%20book.html">Look Book</a></li><li><a href="Our-story.html">Our Story</a></li><li><a href="Press%20&%20Pop-ups.html">Press &amp; Pop-Ups</a></li><li><a href="contact.html">Contact</a></li></ul><ul class="mobile-drawer-links mobile-drawer-links-sm"><li><a class="active" href="Tidal-size-guide.html">Size Guide</a></li><li><a href="Tidal-shipping-returns.html">Shipping &amp; Returns</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
 <header class="page-header">
 <p class="eyebrow">Your perfect fit</p>
 <h1>Size Guide</h1>
@@ -2023,7 +2044,7 @@ footer > .footer-brand p {
 <p class="section-title">Tops &amp; One-Pieces</p>
 <p class="section-note">Sized to bust. If your bust and waist fall in different sizes, size up and adjust ties.</p>
 <div class="size-table-wrap">
-<table class="size-table">
+<div class="size-table-scroll"><table class="size-table">
 <thead>
 <tr>
 <th>Size</th>
@@ -2058,7 +2079,7 @@ footer > .footer-brand p {
 <td class="cm-col">99–104</td><td class="in-col" style="display:none">39–41</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <!-- BOTTOMS TABLE -->
@@ -2066,7 +2087,7 @@ footer > .footer-brand p {
 <p class="section-title">Bottoms</p>
 <p class="section-note">Sized to hips. Tie-side styles offer additional adjustability at the waist.</p>
 <div class="size-table-wrap">
-<table class="size-table">
+<div class="size-table-scroll"><table class="size-table">
 <thead>
 <tr>
 <th>Size</th>
@@ -2096,7 +2117,7 @@ footer > .footer-brand p {
 <td class="cm-col">99–104</td><td class="in-col" style="display:none">39–41</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <!-- DESIGN PROCESS GALLERY -->
@@ -2137,12 +2158,12 @@ footer > .footer-brand p {
 <ul>
 <li><a href="Our-story.html">Our Story</a></li>
 <li><a href="look%20book.html">Look Book</a></li>
-<li><a href="Press%20%26%20Pop-ups.html">Press &amp; Pop-Ups</a></li>
+<li><a href="Press%20&%20Pop-ups.html">Press &amp; Pop-Ups</a></li>
 </ul>
 </div>
 <div class="footer-col">
 <h4>Help</h4>
-<ul><li><a href="Tidal-size-guide.html">Size Guide</a></li><li><a href="Tidal-shipping-returns.html">Shipping &amp; Returns</a></li><li><a href="FAQ.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul>
+<ul><li><a href="Tidal-size-guide.html">Size Guide</a></li><li><a href="Tidal-shipping-returns.html">Shipping &amp; Returns</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul>
 </div>
 </div>
 <div class="footer-bottom">© 2026 Tidal Swimwear London · All rights reserved</div>
