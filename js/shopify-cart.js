@@ -1,23 +1,75 @@
 /**
  * shopify-cart.js — Tidal Swimwear
- * Full cart drawer with quantity controls and delete
  *
- * ⚠️  IMPORTANT BEFORE GOING LIVE:
- *  1. Replace STOREFRONT_TOKEN below with a freshly-regenerated token
- *     from Shopify Admin → Apps → Storefront API → rotate
- *  2. In Shopify Admin → Settings → Apps → your Storefront API app:
- *     add these allowed JavaScript domains:
- *        https://tidal-swimwear.co.uk
- *        https://www.tidal-swimwear.co.uk
- *        https://tidal-swimwear.netlify.app
+ * SHOPIFY INTEGRATION LIVE
+ *
+ * Add to Bag buttons look up the matching Shopify product by its
+ * data-shopify-title attribute, resolve the variant from the
+ * selected colour + size, and add it to a Storefront API cart.
+ * The cart drawer + badge update automatically.
+ *
+ * IF YOU REGENERATE THE STOREFRONT TOKEN:
+ *   1. Paste the new token into STOREFRONT_TOKEN below
+ *   2. Leave ENABLED = true
+ *   3. Push to GitHub
+ *
+ * TO TEMPORARILY GO BACK TO "Coming soon" PLACEHOLDER MODE:
+ *   Set ENABLED = false
  */
 
+const ENABLED = true;
 const SHOPIFY_DOMAIN   = 'xfqw4u-tr.myshopify.com';
-const STOREFRONT_TOKEN = '95c5ba0cd35c8aab35d6b2a068d370d3';  // <-- REPLACE THIS WITH FRESH TOKEN
+const STOREFRONT_TOKEN = '95c5ba0cd35c8aab35d6b2a068d370d3';
 const API_URL          = `https://${SHOPIFY_DOMAIN}/api/2024-04/graphql.json`;
 
 /* ============================================================
-   GRAPHQL HELPER
+   BUTTON STATE HELPER
+   ============================================================ */
+function setBtn(btn, state) {
+  const states = {
+    idle:        { text: 'Add to Bag',    disabled: false },
+    loading:     { text: 'Adding…',       disabled: true  },
+    done:        { text: 'Added ✓',       disabled: true  },
+    soon:        { text: 'Coming soon',   disabled: true  },
+    nosize:      { text: 'Select a size', disabled: true  },
+    unavailable: { text: 'Sold Out',      disabled: true  },
+    error:       { text: 'Try again',     disabled: false },
+  };
+  const s = states[state] || states.idle;
+  btn.textContent = s.text;
+  btn.disabled    = s.disabled;
+}
+
+/* ============================================================
+   PLACEHOLDER MODE — when ENABLED = false
+   ============================================================ */
+function initPlaceholderMode() {
+  console.log('[Tidal] Cart placeholder mode active — no Shopify calls.');
+  
+  /* Hide cart count badge entirely while disabled */
+  document.querySelectorAll('.cart-count').forEach(el => {
+    el.style.display = 'none';
+  });
+  
+  /* Cart icon → friendly message */
+  document.querySelectorAll('.cart-icon, [data-cart-toggle]').forEach(icon => {
+    icon.addEventListener('click', e => {
+      e.preventDefault();
+      alert('Our online shop is launching shortly. For early enquiries please email hello@tidal-swimwear.co.uk');
+    });
+  });
+  
+  /* Add to Bag buttons → "Coming soon" */
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setBtn(btn, 'soon');
+      setTimeout(() => setBtn(btn, 'idle'), 2200);
+    });
+  });
+}
+
+/* ============================================================
+   GRAPHQL HELPER (only used when ENABLED)
    ============================================================ */
 async function gql(query, variables = {}) {
   const res = await fetch(API_URL, {
@@ -38,7 +90,7 @@ async function gql(query, variables = {}) {
 }
 
 /* ============================================================
-   PRODUCT CACHE — fetches all products on this page
+   PRODUCT CACHE
    ============================================================ */
 const productCache = {};
 
@@ -115,8 +167,8 @@ function getVariant(card) {
    CART STATE
    ============================================================ */
 let cartId  = localStorage.getItem('tidal_cart_id')  || null;
-let cartUrl = null;     // re-fetched from Shopify each time
-let cartData = null;    // current cart lines
+let cartUrl = null;
+let cartData = null;
 
 function updateCartBadge(qty) {
   document.querySelectorAll('.cart-count').forEach(el => {
@@ -126,9 +178,8 @@ function updateCartBadge(qty) {
 }
 
 /* ============================================================
-   CART MUTATIONS
+   CART MUTATIONS (only used when ENABLED)
    ============================================================ */
-
 const CART_FRAGMENT = `
   id
   checkoutUrl
@@ -230,11 +281,8 @@ async function fetchCart() {
       }
     `, { cartId });
     if (!data.cart) {
-      // Cart expired — clear it
       localStorage.removeItem('tidal_cart_id');
-      cartId = null;
-      cartData = null;
-      cartUrl = null;
+      cartId = null; cartData = null; cartUrl = null;
       updateCartBadge(0);
       return null;
     }
@@ -249,9 +297,8 @@ async function fetchCart() {
 }
 
 /* ============================================================
-   CART DRAWER UI
+   CART DRAWER UI (only used when ENABLED)
    ============================================================ */
-
 function injectDrawerStyles() {
   if (document.getElementById('tidal-cart-styles')) return;
   const style = document.createElement('style');
@@ -285,9 +332,7 @@ function injectDrawerStyles() {
       color: var(--navy, #0f1d3a); line-height: 0;
     }
     .tidal-cart-close svg { display: block; width: 16px; height: 16px; }
-    .tidal-cart-body {
-      flex: 1; overflow-y: auto; padding: 8px 22px;
-    }
+    .tidal-cart-body { flex: 1; overflow-y: auto; padding: 8px 22px; }
     .tidal-cart-empty {
       text-align: center; padding: 80px 20px;
       font-family: 'Cormorant Garamond', serif; font-style: italic;
@@ -306,13 +351,11 @@ function injectDrawerStyles() {
     .tidal-cart-line-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
     .tidal-cart-line-title {
       font-family: 'Italiana', serif; font-size: 13px;
-      color: var(--navy, #0f1d3a); letter-spacing: 0.03em;
-      line-height: 1.2;
+      color: var(--navy, #0f1d3a); letter-spacing: 0.03em; line-height: 1.2;
     }
     .tidal-cart-line-meta {
       font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(15,29,58,0.5); font-family: 'Inter', sans-serif;
-      line-height: 1.4;
+      color: rgba(15,29,58,0.5); font-family: 'Inter', sans-serif; line-height: 1.4;
     }
     .tidal-cart-line-qty {
       display: inline-flex; align-items: center; gap: 8px; margin-top: 6px;
@@ -327,8 +370,7 @@ function injectDrawerStyles() {
     .tidal-cart-qty-btn:hover { background: rgba(15,29,58,0.04); border-color: rgba(15,29,58,0.3); }
     .tidal-cart-qty-num {
       min-width: 14px; text-align: center; font-size: 11px;
-      color: var(--navy, #0f1d3a); font-family: 'Inter', sans-serif;
-      letter-spacing: 0.05em;
+      color: var(--navy, #0f1d3a); font-family: 'Inter', sans-serif; letter-spacing: 0.05em;
     }
     .tidal-cart-line-right {
       display: flex; flex-direction: column; align-items: flex-end;
@@ -341,8 +383,7 @@ function injectDrawerStyles() {
     .tidal-cart-line-remove {
       background: none; border: 0; padding: 2px 4px; cursor: pointer;
       color: rgba(15,29,58,0.35); font-size: 14px; line-height: 1;
-      transition: color 0.15s; font-family: 'Inter', sans-serif;
-      font-weight: 300;
+      transition: color 0.15s; font-family: 'Inter', sans-serif; font-weight: 300;
     }
     .tidal-cart-line-remove:hover { color: var(--coral, #c8553d); }
     .tidal-cart-footer {
@@ -351,15 +392,13 @@ function injectDrawerStyles() {
     }
     .tidal-cart-subtotal {
       display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 12px;
-      font-family: 'Inter', sans-serif; font-size: 10px;
+      margin-bottom: 12px; font-family: 'Inter', sans-serif; font-size: 10px;
       letter-spacing: 0.22em; text-transform: uppercase;
       color: rgba(15,29,58,0.65); font-weight: 400;
     }
     .tidal-cart-subtotal-amount {
       font-family: 'Italiana', serif; font-size: 17px;
-      letter-spacing: 0.03em; text-transform: none;
-      color: var(--navy, #0f1d3a);
+      letter-spacing: 0.03em; text-transform: none; color: var(--navy, #0f1d3a);
     }
     .tidal-cart-checkout {
       display: block; width: 100%; padding: 13px;
@@ -367,8 +406,7 @@ function injectDrawerStyles() {
       border: 0; cursor: pointer; text-align: center; text-decoration: none;
       font-family: 'Inter', sans-serif; font-size: 10px;
       letter-spacing: 0.28em; text-transform: uppercase;
-      transition: opacity 0.15s; font-weight: 400;
-      box-sizing: border-box;
+      transition: opacity 0.15s; font-weight: 400; box-sizing: border-box;
     }
     .tidal-cart-checkout:hover { opacity: 0.88; }
     .tidal-cart-checkout:disabled { opacity: 0.35; cursor: not-allowed; }
@@ -392,11 +430,9 @@ function injectDrawerStyles() {
 function buildDrawerDOM() {
   if (document.getElementById('tidal-cart-drawer')) return;
   injectDrawerStyles();
-
   const overlay = document.createElement('div');
   overlay.className = 'tidal-cart-overlay';
   overlay.id = 'tidal-cart-overlay';
-
   const drawer = document.createElement('aside');
   drawer.className = 'tidal-cart-drawer';
   drawer.id = 'tidal-cart-drawer';
@@ -421,17 +457,12 @@ function buildDrawerDOM() {
       <button class="tidal-cart-continue" type="button" id="tidal-cart-continue">Continue shopping</button>
     </footer>
   `;
-
   document.body.appendChild(overlay);
   document.body.appendChild(drawer);
-
-  /* Bind events */
   overlay.addEventListener('click', closeDrawer);
   drawer.querySelector('.tidal-cart-close').addEventListener('click', closeDrawer);
   document.getElementById('tidal-cart-continue').addEventListener('click', closeDrawer);
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeDrawer();
-  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 }
 
 function openDrawer() {
@@ -459,18 +490,15 @@ function renderDrawer() {
   const body   = document.getElementById('tidal-cart-body');
   const footer = document.getElementById('tidal-cart-footer');
   if (!body) return;
-
   const lines = cartData?.lines?.edges || [];
   if (!lines.length) {
     body.innerHTML = '<div class="tidal-cart-empty">Your bag is empty.</div>';
     footer.style.display = 'none';
     return;
   }
-
   body.innerHTML = lines.map(({ node: line }) => {
     const v = line.merchandise;
-    const opts = (v.selectedOptions || [])
-      .map(o => o.value).join(' · ');
+    const opts = (v.selectedOptions || []).map(o => o.value).join(' · ');
     const img = v.product?.featuredImage?.url || '';
     const imgTag = img
       ? `<img class="tidal-cart-line-img" src="${img}" alt="${v.product.title}">`
@@ -494,31 +522,20 @@ function renderDrawer() {
       </div>
     `;
   }).join('');
-
-  /* Subtotal */
   const subAmount = cartData?.cost?.subtotalAmount;
   document.getElementById('tidal-cart-subtotal').textContent =
     subAmount ? fmtMoney(subAmount.amount, subAmount.currencyCode) : '£0.00';
-
-  /* Checkout link */
   const checkoutBtn = document.getElementById('tidal-cart-checkout');
   checkoutBtn.href = cartUrl || '#';
-
   footer.style.display = '';
-
-  /* Wire line actions */
   body.querySelectorAll('.tidal-cart-line').forEach(row => {
     const lineId = row.dataset.lineId;
     const lineNode = lines.find(l => l.node.id === lineId)?.node;
     if (!lineNode) return;
-
     row.querySelector('[data-action="decrease"]').addEventListener('click', async () => {
       const newQty = lineNode.quantity - 1;
-      if (newQty < 1) {
-        await removeLine(lineId);
-      } else {
-        await updateLineQty(lineId, newQty);
-      }
+      if (newQty < 1) await removeLine(lineId);
+      else await updateLineQty(lineId, newQty);
       renderDrawer();
     });
     row.querySelector('[data-action="increase"]').addEventListener('click', async () => {
@@ -533,62 +550,45 @@ function renderDrawer() {
 }
 
 /* ============================================================
-   BUTTON STATE HELPER
-   ============================================================ */
-function setBtn(btn, state) {
-  const states = {
-    idle:        { text: 'Add to Bag',    disabled: false },
-    loading:     { text: 'Adding…',       disabled: true  },
-    done:        { text: 'Added ✓',       disabled: true  },
-    nosize:      { text: 'Select a size', disabled: true  },
-    unavailable: { text: 'Sold Out',      disabled: true  },
-    error:       { text: 'Try again',     disabled: false },
-  };
-  const s = states[state] || states.idle;
-  btn.textContent = s.text;
-  btn.disabled    = s.disabled;
-}
-
-/* ============================================================
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', async () => {
-
-  /* Re-fetch cart on every page load (replaces unreliable badge cache) */
+  
+  /* If disabled, run placeholder mode and stop */
+  if (!ENABLED || !STOREFRONT_TOKEN) {
+    initPlaceholderMode();
+    return;
+  }
+  
+  /* Otherwise: full Shopify integration */
   await fetchCart();
-
-  /* Cart icon → open the drawer */
+  
   document.querySelectorAll('.cart-icon, [data-cart-toggle]').forEach(icon => {
     icon.addEventListener('click', e => {
       e.preventDefault();
       openDrawer();
     });
   });
-
-  /* Fetch products on this page */
+  
   try {
     await fetchPageProducts();
   } catch (err) {
     console.error('[Tidal] Failed to load products from Shopify:', err);
   }
-
-  /* Add to Bag buttons */
+  
   document.querySelectorAll('.add-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
       const card   = btn.closest('.product-card');
       const result = getVariant(card);
-
       if (result.error === 'no_size') { setBtn(btn, 'nosize'); setTimeout(() => setBtn(btn, 'idle'), 1800); return; }
       if (result.error === 'unavailable') { setBtn(btn, 'unavailable'); setTimeout(() => setBtn(btn, 'idle'), 2000); return; }
       if (result.error) { console.warn('[Tidal] Variant lookup failed:', result); setBtn(btn, 'error'); setTimeout(() => setBtn(btn, 'idle'), 2500); return; }
-
       setBtn(btn, 'loading');
       try {
         if (!cartId) await createCart(result.gid);
         else         await addToCart(result.gid);
         setBtn(btn, 'done');
         setTimeout(() => setBtn(btn, 'idle'), 1500);
-        /* Open drawer to confirm the add */
         openDrawer();
       } catch (err) {
         console.error('[Tidal] Cart error:', err);
