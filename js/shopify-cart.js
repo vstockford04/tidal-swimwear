@@ -23,6 +23,26 @@ const STOREFRONT_TOKEN = '95c5ba0cd35c8aab35d6b2a068d370d3';
 const API_URL          = `https://${SHOPIFY_DOMAIN}/api/2024-04/graphql.json`;
 
 /* ============================================================
+   CHECKOUT URL FIX
+   Shopify returns a checkoutUrl on the store's configured domain
+   (tidal-swimwear.co.uk), but that domain is served by Netlify,
+   which has no /cart route -> 404. Force the checkout onto the
+   myshopify.com domain, which always serves checkout correctly.
+   The cart token in the path is preserved, so nothing is lost.
+   Once the Shopify domain settings are sorted, this can be removed.
+   ============================================================ */
+function fixCheckoutUrl(url) {
+  if (!url) return url;
+  try {
+    const u = new URL(url);
+    u.hostname = SHOPIFY_DOMAIN;
+    return u.toString();
+  } catch (e) {
+    return url;
+  }
+}
+
+/* ============================================================
    BUTTON STATE HELPER
    ============================================================ */
 function setBtn(btn, state) {
@@ -215,7 +235,7 @@ async function createCart(variantGid) {
   if (errs.length) throw new Error(errs[0].message);
   cartData = data.cartCreate.cart;
   cartId   = cartData.id;
-  cartUrl  = cartData.checkoutUrl;
+  cartUrl  = fixCheckoutUrl(cartData.checkoutUrl);
   localStorage.setItem('tidal_cart_id', cartId);
   updateCartBadge(cartData.totalQuantity);
   return cartData;
@@ -233,7 +253,7 @@ async function addToCart(variantGid) {
   const errs = data.cartLinesAdd.userErrors;
   if (errs.length) throw new Error(errs[0].message);
   cartData = data.cartLinesAdd.cart;
-  cartUrl  = cartData.checkoutUrl;
+  cartUrl  = fixCheckoutUrl(cartData.checkoutUrl);
   updateCartBadge(cartData.totalQuantity);
   return cartData;
 }
@@ -250,7 +270,7 @@ async function updateLineQty(lineId, newQty) {
   const errs = data.cartLinesUpdate.userErrors;
   if (errs.length) throw new Error(errs[0].message);
   cartData = data.cartLinesUpdate.cart;
-  cartUrl  = cartData.checkoutUrl;
+  cartUrl  = fixCheckoutUrl(cartData.checkoutUrl);
   updateCartBadge(cartData.totalQuantity);
   return cartData;
 }
@@ -267,7 +287,7 @@ async function removeLine(lineId) {
   const errs = data.cartLinesRemove.userErrors;
   if (errs.length) throw new Error(errs[0].message);
   cartData = data.cartLinesRemove.cart;
-  cartUrl  = cartData.checkoutUrl;
+  cartUrl  = fixCheckoutUrl(cartData.checkoutUrl);
   updateCartBadge(cartData.totalQuantity);
   return cartData;
 }
@@ -287,7 +307,7 @@ async function fetchCart() {
       return null;
     }
     cartData = data.cart;
-    cartUrl  = cartData.checkoutUrl;
+    cartUrl  = fixCheckoutUrl(cartData.checkoutUrl);
     updateCartBadge(cartData.totalQuantity);
     return cartData;
   } catch (err) {
@@ -401,7 +421,7 @@ function injectDrawerStyles() {
       letter-spacing: 0.03em; text-transform: none; color: var(--navy, #0f1d3a);
     }
     .tidal-cart-checkout {
-      display: block; width: 100%; padding: 13px;
+      display: block; width: 100%; padding: 9px 13px;
       background: var(--navy, #0f1d3a); color: var(--cream, #f4ede2);
       border: 0; cursor: pointer; text-align: center; text-decoration: none;
       font-family: 'Inter', sans-serif; font-size: 10px;
