@@ -549,72 +549,99 @@ function injectDrawerStyles() {
   style.id = 'tidal-cart-styles';
   style.textContent = `
     .tidal-cart-overlay {
-      position: fixed; inset: 0; background: rgba(15,29,58,0.35);
+      position: fixed; inset: 0; background: rgba(20,20,20,0.25);
       opacity: 0; pointer-events: none; transition: opacity 0.3s;
       z-index: 998;
     }
     .tidal-cart-overlay.is-open { opacity: 1; pointer-events: auto; }
     .tidal-cart-drawer {
       position: fixed; top: 0; right: 0; height: 100vh;
-      width: 360px; max-width: 92vw; background: var(--cream, #f4ede2);
-      transform: translateX(100%); transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
+      width: 360px; max-width: 92vw;
+      background: var(--cream, #f4ede2);
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
       z-index: 999; display: flex; flex-direction: column;
-      box-shadow: -2px 0 24px rgba(15,29,58,0.06);
+      box-shadow: -2px 0 24px rgba(0,0,0,0.04);
     }
     .tidal-cart-drawer.is-open { transform: translateX(0); }
     .tidal-cart-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 22px; border-bottom: 1px solid rgba(15,29,58,0.06);
+      padding: 22px 24px 18px;
+      background: var(--cream, #f4ede2);
     }
     .tidal-cart-header h2 {
-      margin: 0; font-family: 'Italiana', serif; font-size: 16px;
-      color: var(--navy, #0f1d3a); letter-spacing: 0.22em;
-      text-transform: uppercase; font-weight: 400;
+      margin: 0;
+      font-family: 'Italiana', serif;
+      font-size: 14px;
+      color: #2a2a2a;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      font-weight: 400;
     }
     .tidal-cart-close {
       background: none; border: 0; padding: 4px; cursor: pointer;
-      color: var(--navy, #0f1d3a); line-height: 0;
+      color: #2a2a2a;
+      line-height: 0;
+      opacity: 0.65;
+      transition: opacity 0.15s;
     }
-    .tidal-cart-close svg { display: block; width: 16px; height: 16px; }
-    .tidal-cart-body { flex: 1; overflow-y: auto; padding: 8px 22px; }
+    .tidal-cart-close:hover { opacity: 1; }
+    .tidal-cart-close svg { display: block; width: 14px; height: 14px; }
+    .tidal-cart-body {
+      flex: 1; overflow-y: auto;
+      padding: 0 24px;
+      background: var(--cream, #f4ede2);
+    }
     .tidal-cart-empty {
       text-align: center; padding: 80px 20px;
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 15px; color: rgba(15,29,58,0.45);
+      font-size: 15px; color: rgba(42,42,42,0.45);
     }
     .tidal-cart-line {
       display: grid; grid-template-columns: 56px 1fr auto;
-      gap: 12px; padding: 14px 0;
-      border-bottom: 1px solid rgba(15,29,58,0.06);
+      gap: 14px; padding: 18px 0;
+      border-bottom: 1px solid rgba(42,42,42,0.08);
     }
+    .tidal-cart-line:first-child { padding-top: 6px; }
     .tidal-cart-line:last-child { border-bottom: 0; }
     .tidal-cart-line-img {
-      width: 56px; height: 72px; background: rgba(15,29,58,0.04);
+      width: 56px; height: 72px;
+      background: rgba(42,42,42,0.04);
       object-fit: cover; display: block;
     }
-    .tidal-cart-line-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .tidal-cart-line-info {
+      display: flex; flex-direction: column; gap: 3px; min-width: 0;
+    }
     .tidal-cart-line-title {
       font-family: 'Italiana', serif; font-size: 13px;
-      color: var(--navy, #0f1d3a); letter-spacing: 0.03em; line-height: 1.2;
+      color: #2a2a2a;
+      letter-spacing: 0.04em; line-height: 1.25;
     }
     .tidal-cart-line-meta {
-      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(15,29,58,0.5); font-family: 'Inter', sans-serif; line-height: 1.4;
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(42,42,42,0.55);
+      font-family: 'Inter', sans-serif; line-height: 1.4;
     }
     .tidal-cart-line-qty {
-      display: inline-flex; align-items: center; gap: 8px; margin-top: 6px;
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 8px;
     }
     .tidal-cart-qty-btn {
-      width: 20px; height: 20px; border: 1px solid rgba(15,29,58,0.15);
+      width: 20px; height: 20px;
+      border: 1px solid rgba(42,42,42,0.18);
       background: transparent; cursor: pointer; font-size: 11px;
-      color: var(--navy, #0f1d3a); display: inline-flex;
+      color: #2a2a2a;
+      display: inline-flex;
       align-items: center; justify-content: center; padding: 0;
       transition: background 0.15s, border-color 0.15s; line-height: 0;
     }
-    .tidal-cart-qty-btn:hover { background: rgba(15,29,58,0.04); border-color: rgba(15,29,58,0.3); }
+    .tidal-cart-qty-btn:hover {
+      background: rgba(42,42,42,0.04);
+      border-color: rgba(42,42,42,0.35);
+    }
     .tidal-cart-qty-num {
       min-width: 14px; text-align: center; font-size: 11px;
-      color: var(--navy, #0f1d3a); font-family: 'Inter', sans-serif; letter-spacing: 0.05em;
+      color: #2a2a2a;
+      font-family: 'Inter', sans-serif; letter-spacing: 0.05em;
     }
     .tidal-cart-line-right {
       display: flex; flex-direction: column; align-items: flex-end;
@@ -622,53 +649,64 @@ function injectDrawerStyles() {
     }
     .tidal-cart-line-price {
       font-family: 'Italiana', serif; font-size: 13px;
-      color: var(--navy, #0f1d3a); letter-spacing: 0.03em;
+      color: #2a2a2a;
+      letter-spacing: 0.04em;
     }
     .tidal-cart-line-remove {
-      background: none; border: 0; padding: 2px 4px; cursor: pointer;
-      color: rgba(15,29,58,0.35); font-size: 14px; line-height: 1;
-      transition: color 0.15s; font-family: 'Inter', sans-serif; font-weight: 300;
+      background: none; border: 0; padding: 2px 6px; cursor: pointer;
+      color: rgba(42,42,42,0.35);
+      font-size: 16px; line-height: 1;
+      transition: color 0.15s;
+      font-family: 'Inter', sans-serif; font-weight: 300;
     }
     .tidal-cart-line-remove:hover { color: var(--coral, #c8553d); }
     .tidal-cart-footer {
-      padding: 16px 22px 20px; border-top: 1px solid rgba(15,29,58,0.06);
+      padding: 20px 24px 24px;
       background: var(--cream, #f4ede2);
     }
     .tidal-cart-subtotal {
       display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 12px; font-family: 'Inter', sans-serif; font-size: 10px;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(15,29,58,0.65); font-weight: 400;
+      margin-bottom: 16px;
+      font-family: 'Inter', sans-serif; font-size: 10px;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: rgba(42,42,42,0.7);
+      font-weight: 400;
     }
     .tidal-cart-subtotal-amount {
-      font-family: 'Italiana', serif; font-size: 17px;
-      letter-spacing: 0.03em; text-transform: none; color: var(--navy, #0f1d3a);
+      font-family: 'Italiana', serif; font-size: 18px;
+      letter-spacing: 0.04em; text-transform: none;
+      color: #2a2a2a;
     }
     .tidal-cart-checkout {
-      display: block; width: 100%; padding: 14px 13px;
-      background: var(--navy, #0f1d3a); color: var(--cream, #f4ede2);
+      display: block; width: 100%;
+      padding: 15px 13px;
+      background: var(--coral, #c8553d);
+      color: var(--cream, #f4ede2);
       border: 0;
       cursor: pointer; text-align: center; text-decoration: none;
       font-family: 'Inter', sans-serif; font-size: 10px;
-      letter-spacing: 0.28em; text-transform: uppercase;
-      transition: background 0.15s, opacity 0.15s; font-weight: 400; box-sizing: border-box;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      transition: opacity 0.18s, background 0.18s;
+      font-weight: 400; box-sizing: border-box;
     }
     .tidal-cart-checkout:hover {
-      background: var(--coral, #c8553d); color: var(--cream, #f4ede2);
+      background: #b34a35;
     }
-    .tidal-cart-checkout:disabled { opacity: 0.35; cursor: not-allowed; }
+    .tidal-cart-checkout:disabled {
+      opacity: 0.35; cursor: not-allowed;
+    }
     .tidal-cart-continue {
-      display: block; text-align: center; padding-top: 10px;
+      display: block; text-align: center; padding-top: 14px;
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 12px; color: rgba(15,29,58,0.5);
+      font-size: 13px; color: rgba(42,42,42,0.5);
       background: none; border: 0; cursor: pointer; width: 100%;
     }
-    .tidal-cart-continue:hover { color: var(--navy, #0f1d3a); }
+    .tidal-cart-continue:hover { color: #2a2a2a; }
     @media (max-width: 480px) {
       .tidal-cart-drawer { width: 100vw; max-width: 100vw; }
-      .tidal-cart-header { padding: 16px 18px; }
-      .tidal-cart-body { padding: 6px 18px; }
-      .tidal-cart-footer { padding: 14px 18px 18px; }
+      .tidal-cart-header { padding: 18px 18px 14px; }
+      .tidal-cart-body { padding: 0 18px; }
+      .tidal-cart-footer { padding: 16px 18px 20px; }
     }
   `;
   document.head.appendChild(style);
