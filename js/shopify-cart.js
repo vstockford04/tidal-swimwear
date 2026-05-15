@@ -13,7 +13,7 @@
  */
 
 const SHOPIFY_DOMAIN   = 'xfqw4u-tr.myshopify.com';
-const STOREFRONT_TOKEN = '95c5ba0cd35c8aab35d6b2a068d370d3';  // <-- REPLACE THIS WITH FRESH TOKEN
+const STOREFRONT_TOKEN = '27d68f53d7f95dbca2d1cb3cfa6fa627-1778806389';  // <-- REPLACE THIS WITH FRESH TOKEN
 const API_URL          = `https://${SHOPIFY_DOMAIN}/api/2024-04/graphql.json`;
 
 /* ============================================================
