@@ -679,21 +679,21 @@ function injectDrawerStyles() {
     }
     .tidal-cart-checkout {
       display: block; width: 100%;
-      padding: 18px 0;
-      background: transparent;
-      color: var(--navy, #0f1d3a);
+      padding: 16px 13px;
+      background: var(--navy, #0f1d3a);
+      color: var(--cream, #f4ede2);
       border: 0;
       cursor: pointer; text-align: center; text-decoration: none;
       font-family: 'Inter', sans-serif; font-size: 11px;
-      letter-spacing: 0.4em; text-transform: uppercase;
-      transition: opacity 0.18s;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      transition: background 0.18s;
       font-weight: 400; box-sizing: border-box;
     }
     .tidal-cart-checkout:hover {
-      opacity: 0.65;
+      background: #1c2c4d;
     }
     .tidal-cart-checkout:disabled {
-      opacity: 0.3; cursor: not-allowed;
+      opacity: 0.35; cursor: not-allowed;
     }
     .tidal-cart-continue {
       display: block; text-align: center; padding-top: 14px;
