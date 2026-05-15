@@ -61,25 +61,44 @@ function setBtn(btn, state) {
 }
 
 /* ============================================================
+   COLOUR ALIAS MAP
+   The UI shows "Toffee" everywhere for consistency, but 4 products
+   in Shopify still have the variant option named "Beige".
+   This map translates the UI colour → the Shopify colour name
+   on a per-product basis so lookups resolve correctly.
+
+   REMOVE each entry once the Shopify variant is renamed to "Toffee".
+   The function is a safe no-op if the map is empty.
+   ============================================================ */
+const COLOUR_ALIASES = {
+  'the lucy bottoms': { toffee: 'beige' },
+  'the neri bottoms': { toffee: 'beige' },
+  'the helena top':   { toffee: 'beige' },
+  'the emily top':    { toffee: 'beige' },
+};
+
+function resolveColour(productTitle, uiColour) {
+  const map = COLOUR_ALIASES[productTitle];
+  return map?.[uiColour] ?? uiColour;
+}
+
+/* ============================================================
    PLACEHOLDER MODE — when ENABLED = false
    ============================================================ */
 function initPlaceholderMode() {
   console.log('[Tidal] Cart placeholder mode active — no Shopify calls.');
-  
-  /* Hide cart count badge entirely while disabled */
+
   document.querySelectorAll('.cart-count').forEach(el => {
     el.style.display = 'none';
   });
-  
-  /* Cart icon → friendly message */
+
   document.querySelectorAll('.cart-icon, [data-cart-toggle]').forEach(icon => {
     icon.addEventListener('click', e => {
       e.preventDefault();
       alert('Our online shop is launching shortly. For early enquiries please email hello@tidal-swimwear.co.uk');
     });
   });
-  
-  /* Add to Bag buttons → "Coming soon" */
+
   document.querySelectorAll('.add-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       setBtn(btn, 'soon');
@@ -164,19 +183,27 @@ async function fetchPageProducts() {
 
 /* ============================================================
    VARIANT LOOKUP
+   Uses resolveColour() to translate UI colour → Shopify colour
+   before looking up in the cache. Handles the Toffee/Beige case.
    ============================================================ */
 function getVariant(card) {
-  const title   = card.dataset.shopifyTitle?.toLowerCase();
-  const colour  = card.querySelector('.colour-btn.active')?.dataset.colour?.toLowerCase();
-  const sizeBtn = card.querySelector('.size-btn.active');
-  const size    = sizeBtn?.textContent?.trim().toUpperCase();
-  const product = productCache[title];
+  const title    = card.dataset.shopifyTitle?.toLowerCase();
+  const uiColour = card.querySelector('.colour-btn.active')?.dataset.colour?.toLowerCase();
+  const sizeBtn  = card.querySelector('.size-btn.active');
+  const size     = sizeBtn?.textContent?.trim().toUpperCase();
+  const product  = productCache[title];
+
   if (!product)  return { error: 'product_not_found', title };
-  if (!colour)   return { error: 'no_colour' };
+  if (!uiColour) return { error: 'no_colour' };
   if (!size)     return { error: 'no_size' };
+
+  /* Translate UI colour → Shopify colour (handles Toffee → Beige) */
+  const colour = resolveColour(title, uiColour);
+
   const colourKey = Object.keys(product).find(k => k === colour)
                  ?? Object.keys(product).find(k => k.includes(colour) || colour.includes(k));
   if (!colourKey)  return { error: 'colour_not_found', colour };
+
   const variant = product[colourKey]?.[size];
   if (!variant)    return { error: 'size_not_found', size };
   if (!variant.available) return { error: 'unavailable' };
@@ -186,8 +213,8 @@ function getVariant(card) {
 /* ============================================================
    CART STATE
    ============================================================ */
-let cartId  = localStorage.getItem('tidal_cart_id')  || null;
-let cartUrl = null;
+let cartId   = localStorage.getItem('tidal_cart_id') || null;
+let cartUrl  = null;
 let cartData = null;
 
 function updateCartBadge(qty) {
@@ -314,6 +341,203 @@ async function fetchCart() {
     console.error('[Tidal] Failed to fetch cart:', err);
     return null;
   }
+}
+
+/* ============================================================
+   PRODUCT CARD BUTTON STYLES
+   Injected once on init. Ensures size buttons, colour switcher
+   and Add to Bag are correctly centred and aligned on all screens.
+   ============================================================ */
+function injectProductStyles() {
+  if (document.getElementById('tidal-product-styles')) return;
+  const style = document.createElement('style');
+  style.id = 'tidal-product-styles';
+  style.textContent = `
+    /* ── Colour switcher — sits flush below image, unchanged ── */
+    .colour-switcher {
+      display: flex;
+      border-top: 1px solid var(--hairline, rgba(15,29,58,0.10));
+      background: var(--cream, #f4ede2);
+      width: 100%;
+    }
+
+    .colour-btn {
+      flex: 1;
+      padding: 14px 6px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      color: var(--muted, #6b6b6b);
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-weight: 400;
+    }
+
+    .colour-btn:not(:last-child) {
+      border-right: 1px solid var(--hairline, rgba(15,29,58,0.10));
+    }
+
+    .colour-btn .dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(15,29,58,0.18);
+      transition: transform 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .colour-btn.active .dot {
+      transform: scale(1.25);
+      border-color: var(--navy, #0f1d3a);
+    }
+
+    .colour-btn.active {
+      color: var(--navy, #0f1d3a);
+      border-bottom-color: var(--navy, #0f1d3a);
+    }
+
+    .colour-btn:hover { color: var(--navy, #0f1d3a); }
+
+    /* ── Product info wrapper ── */
+    .product-info {
+      padding: 20px 24px 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .product-category {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--muted, #6b6b6b);
+      margin-bottom: 6px;
+      font-weight: 400;
+    }
+
+    .product-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted, #6b6b6b);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      max-width: 300px;
+    }
+
+    /* ── Price row ── */
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 14px;
+      width: 100%;
+    }
+
+    .product-price {
+      font-family: 'Italiana', serif;
+      font-size: 1.4rem;
+      color: var(--navy, #0f1d3a);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Size row — centred, just below price ── */
+    .size-row {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      width: 100%;
+    }
+
+    /* Size buttons mirror the colour active style:
+       muted by default, navy text + navy bottom border when active */
+    .size-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 6px 10px;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      color: var(--muted, #6b6b6b);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      font-weight: 400;
+      white-space: nowrap;
+      line-height: 1.4;
+    }
+
+    .size-btn:hover {
+      color: var(--navy, #0f1d3a);
+    }
+
+    .size-btn.active {
+      color: var(--navy, #0f1d3a);
+      border-bottom-color: var(--navy, #0f1d3a);
+    }
+
+    /* ── Add to Bag — full width, below size row ── */
+    .add-btn {
+      width: 100%;
+      background: var(--navy, #0f1d3a);
+      color: var(--cream, #f4ede2);
+      border: none;
+      padding: 15px;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.25s;
+      font-weight: 400;
+      display: block;
+      text-align: center;
+      box-sizing: border-box;
+      margin-top: 0;
+    }
+
+    .add-btn:hover:not(:disabled) {
+      background: var(--coral, #c8553d);
+    }
+
+    .add-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .product-info {
+        padding: 16px 16px 0;
+      }
+      .size-btn {
+        padding: 5px 8px;
+        font-size: 8px;
+      }
+      .colour-btn {
+        padding: 11px 4px;
+        font-size: 8px;
+        letter-spacing: 0.18em;
+      }
+    }
+  `;
+  document.head.appendChild(style);
 }
 
 /* ============================================================
@@ -553,14 +777,12 @@ function renderDrawer() {
   checkoutBtn.onclick = function (e) {
     const target = fixCheckoutUrl(cartUrl);
     if (!target) { e.preventDefault(); return; }
-    /* Rewrite once more at click time — final guard against any
-       stale value. Always lands on the myshopify.com domain. */
     window.location.href = target;
     e.preventDefault();
   };
   footer.style.display = '';
   body.querySelectorAll('.tidal-cart-line').forEach(row => {
-    const lineId = row.dataset.lineId;
+    const lineId   = row.dataset.lineId;
     const lineNode = lines.find(l => l.node.id === lineId)?.node;
     if (!lineNode) return;
     row.querySelector('[data-action="decrease"]').addEventListener('click', async () => {
@@ -584,36 +806,39 @@ function renderDrawer() {
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', async () => {
-  
+
+  /* Always inject product button styles */
+  injectProductStyles();
+
   /* If disabled, run placeholder mode and stop */
   if (!ENABLED || !STOREFRONT_TOKEN) {
     initPlaceholderMode();
     return;
   }
-  
-  /* Otherwise: full Shopify integration */
+
+  /* Full Shopify integration */
   await fetchCart();
-  
+
   document.querySelectorAll('.cart-icon, [data-cart-toggle]').forEach(icon => {
     icon.addEventListener('click', e => {
       e.preventDefault();
       openDrawer();
     });
   });
-  
+
   try {
     await fetchPageProducts();
   } catch (err) {
     console.error('[Tidal] Failed to load products from Shopify:', err);
   }
-  
+
   document.querySelectorAll('.add-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
       const card   = btn.closest('.product-card');
       const result = getVariant(card);
-      if (result.error === 'no_size') { setBtn(btn, 'nosize'); setTimeout(() => setBtn(btn, 'idle'), 1800); return; }
-      if (result.error === 'unavailable') { setBtn(btn, 'unavailable'); setTimeout(() => setBtn(btn, 'idle'), 2000); return; }
-      if (result.error) { console.warn('[Tidal] Variant lookup failed:', result); setBtn(btn, 'error'); setTimeout(() => setBtn(btn, 'idle'), 2500); return; }
+      if (result.error === 'no_size')      { setBtn(btn, 'nosize');      setTimeout(() => setBtn(btn, 'idle'), 1800); return; }
+      if (result.error === 'unavailable')  { setBtn(btn, 'unavailable'); setTimeout(() => setBtn(btn, 'idle'), 2000); return; }
+      if (result.error)                    { console.warn('[Tidal] Variant lookup failed:', result); setBtn(btn, 'error'); setTimeout(() => setBtn(btn, 'idle'), 2500); return; }
       setBtn(btn, 'loading');
       try {
         if (!cartId) await createCart(result.gid);
