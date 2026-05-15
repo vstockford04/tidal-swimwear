@@ -421,14 +421,17 @@ function injectDrawerStyles() {
       letter-spacing: 0.03em; text-transform: none; color: var(--navy, #0f1d3a);
     }
     .tidal-cart-checkout {
-      display: block; width: 100%; padding: 9px 13px;
-      background: var(--navy, #0f1d3a); color: var(--cream, #f4ede2);
-      border: 0; cursor: pointer; text-align: center; text-decoration: none;
+      display: block; width: 100%; padding: 11px 13px;
+      background: transparent; color: var(--navy, #0f1d3a);
+      border: 1px solid var(--navy, #0f1d3a);
+      cursor: pointer; text-align: center; text-decoration: none;
       font-family: 'Inter', sans-serif; font-size: 10px;
       letter-spacing: 0.28em; text-transform: uppercase;
-      transition: opacity 0.15s; font-weight: 400; box-sizing: border-box;
+      transition: background 0.15s, color 0.15s; font-weight: 400; box-sizing: border-box;
     }
-    .tidal-cart-checkout:hover { opacity: 0.88; }
+    .tidal-cart-checkout:hover {
+      background: var(--navy, #0f1d3a); color: var(--cream, #f4ede2);
+    }
     .tidal-cart-checkout:disabled { opacity: 0.35; cursor: not-allowed; }
     .tidal-cart-continue {
       display: block; text-align: center; padding-top: 10px;
@@ -546,7 +549,15 @@ function renderDrawer() {
   document.getElementById('tidal-cart-subtotal').textContent =
     subAmount ? fmtMoney(subAmount.amount, subAmount.currencyCode) : '£0.00';
   const checkoutBtn = document.getElementById('tidal-cart-checkout');
-  checkoutBtn.href = cartUrl || '#';
+  checkoutBtn.href = fixCheckoutUrl(cartUrl) || '#';
+  checkoutBtn.onclick = function (e) {
+    const target = fixCheckoutUrl(cartUrl);
+    if (!target) { e.preventDefault(); return; }
+    /* Rewrite once more at click time — final guard against any
+       stale value. Always lands on the myshopify.com domain. */
+    window.location.href = target;
+    e.preventDefault();
+  };
   footer.style.display = '';
   body.querySelectorAll('.tidal-cart-line').forEach(row => {
     const lineId = row.dataset.lineId;
