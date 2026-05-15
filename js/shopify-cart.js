@@ -13,7 +13,7 @@
  */
 
 const SHOPIFY_DOMAIN   = 'xfqw4u-tr.myshopify.com';
-const STOREFRONT_TOKEN = '27d68f53d7f95dbca2d1cb3cfa6fa627-1778806389';  // <-- REPLACE THIS WITH FRESH TOKEN
+const STOREFRONT_TOKEN = '95c5ba0cd35c8aab35d6b2a068d370d3';  // <-- REPLACE THIS WITH FRESH TOKEN
 const API_URL          = `https://${SHOPIFY_DOMAIN}/api/2024-04/graphql.json`;
 
 /* ============================================================
@@ -258,121 +258,132 @@ function injectDrawerStyles() {
   style.id = 'tidal-cart-styles';
   style.textContent = `
     .tidal-cart-overlay {
-      position: fixed; inset: 0; background: rgba(15,29,58,0.4);
+      position: fixed; inset: 0; background: rgba(15,29,58,0.35);
       opacity: 0; pointer-events: none; transition: opacity 0.3s;
       z-index: 998;
     }
     .tidal-cart-overlay.is-open { opacity: 1; pointer-events: auto; }
     .tidal-cart-drawer {
       position: fixed; top: 0; right: 0; height: 100vh;
-      width: 420px; max-width: 100vw; background: var(--cream, #f4ede2);
+      width: 360px; max-width: 92vw; background: var(--cream, #f4ede2);
       transform: translateX(100%); transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
       z-index: 999; display: flex; flex-direction: column;
-      box-shadow: -2px 0 20px rgba(15,29,58,0.08);
+      box-shadow: -2px 0 24px rgba(15,29,58,0.06);
     }
     .tidal-cart-drawer.is-open { transform: translateX(0); }
     .tidal-cart-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 24px; border-bottom: 1px solid rgba(15,29,58,0.08);
+      padding: 18px 22px; border-bottom: 1px solid rgba(15,29,58,0.06);
     }
     .tidal-cart-header h2 {
-      margin: 0; font-family: 'Italiana', serif; font-size: 22px;
-      color: var(--navy, #0f1d3a); letter-spacing: 0.06em;
+      margin: 0; font-family: 'Italiana', serif; font-size: 16px;
+      color: var(--navy, #0f1d3a); letter-spacing: 0.22em;
+      text-transform: uppercase; font-weight: 400;
     }
     .tidal-cart-close {
-      background: none; border: 0; padding: 6px; cursor: pointer;
-      color: var(--navy, #0f1d3a);
+      background: none; border: 0; padding: 4px; cursor: pointer;
+      color: var(--navy, #0f1d3a); line-height: 0;
     }
-    .tidal-cart-close svg { display: block; width: 22px; height: 22px; }
+    .tidal-cart-close svg { display: block; width: 16px; height: 16px; }
     .tidal-cart-body {
-      flex: 1; overflow-y: auto; padding: 20px 24px;
+      flex: 1; overflow-y: auto; padding: 8px 22px;
     }
     .tidal-cart-empty {
-      text-align: center; padding: 60px 20px;
+      text-align: center; padding: 80px 20px;
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 18px; color: rgba(15,29,58,0.5);
+      font-size: 15px; color: rgba(15,29,58,0.45);
     }
     .tidal-cart-line {
-      display: grid; grid-template-columns: 80px 1fr auto;
-      gap: 14px; padding: 16px 0;
-      border-bottom: 1px solid rgba(15,29,58,0.08);
+      display: grid; grid-template-columns: 56px 1fr auto;
+      gap: 12px; padding: 14px 0;
+      border-bottom: 1px solid rgba(15,29,58,0.06);
     }
     .tidal-cart-line:last-child { border-bottom: 0; }
     .tidal-cart-line-img {
-      width: 80px; height: 100px; background: rgba(15,29,58,0.05);
+      width: 56px; height: 72px; background: rgba(15,29,58,0.04);
       object-fit: cover; display: block;
     }
-    .tidal-cart-line-info { display: flex; flex-direction: column; gap: 4px; }
+    .tidal-cart-line-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
     .tidal-cart-line-title {
-      font-family: 'Italiana', serif; font-size: 15px;
-      color: var(--navy, #0f1d3a); letter-spacing: 0.04em;
+      font-family: 'Italiana', serif; font-size: 13px;
+      color: var(--navy, #0f1d3a); letter-spacing: 0.03em;
+      line-height: 1.2;
     }
     .tidal-cart-line-meta {
-      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(15,29,58,0.55); font-family: 'Inter', sans-serif;
+      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(15,29,58,0.5); font-family: 'Inter', sans-serif;
+      line-height: 1.4;
     }
     .tidal-cart-line-qty {
-      display: inline-flex; align-items: center; gap: 10px; margin-top: 8px;
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 6px;
     }
     .tidal-cart-qty-btn {
-      width: 26px; height: 26px; border: 1px solid rgba(15,29,58,0.18);
-      background: transparent; cursor: pointer; font-size: 14px;
+      width: 20px; height: 20px; border: 1px solid rgba(15,29,58,0.15);
+      background: transparent; cursor: pointer; font-size: 11px;
       color: var(--navy, #0f1d3a); display: inline-flex;
       align-items: center; justify-content: center; padding: 0;
-      transition: background 0.15s;
+      transition: background 0.15s, border-color 0.15s; line-height: 0;
     }
-    .tidal-cart-qty-btn:hover { background: rgba(15,29,58,0.05); }
+    .tidal-cart-qty-btn:hover { background: rgba(15,29,58,0.04); border-color: rgba(15,29,58,0.3); }
     .tidal-cart-qty-num {
-      min-width: 18px; text-align: center; font-size: 13px;
+      min-width: 14px; text-align: center; font-size: 11px;
       color: var(--navy, #0f1d3a); font-family: 'Inter', sans-serif;
+      letter-spacing: 0.05em;
     }
     .tidal-cart-line-right {
       display: flex; flex-direction: column; align-items: flex-end;
-      justify-content: space-between; gap: 8px;
+      justify-content: space-between; gap: 6px;
     }
     .tidal-cart-line-price {
-      font-family: 'Italiana', serif; font-size: 16px;
-      color: var(--navy, #0f1d3a);
+      font-family: 'Italiana', serif; font-size: 13px;
+      color: var(--navy, #0f1d3a); letter-spacing: 0.03em;
     }
     .tidal-cart-line-remove {
-      background: none; border: 0; padding: 4px; cursor: pointer;
-      color: rgba(15,29,58,0.45); font-size: 18px; line-height: 1;
-      transition: color 0.15s;
+      background: none; border: 0; padding: 2px 4px; cursor: pointer;
+      color: rgba(15,29,58,0.35); font-size: 14px; line-height: 1;
+      transition: color 0.15s; font-family: 'Inter', sans-serif;
+      font-weight: 300;
     }
     .tidal-cart-line-remove:hover { color: var(--coral, #c8553d); }
     .tidal-cart-footer {
-      padding: 20px 24px; border-top: 1px solid rgba(15,29,58,0.08);
+      padding: 16px 22px 20px; border-top: 1px solid rgba(15,29,58,0.06);
       background: var(--cream, #f4ede2);
     }
     .tidal-cart-subtotal {
       display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 14px;
-      font-family: 'Inter', sans-serif; font-size: 12px;
+      margin-bottom: 12px;
+      font-family: 'Inter', sans-serif; font-size: 10px;
       letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--navy, #0f1d3a);
+      color: rgba(15,29,58,0.65); font-weight: 400;
     }
     .tidal-cart-subtotal-amount {
-      font-family: 'Italiana', serif; font-size: 22px;
-      letter-spacing: 0.04em; text-transform: none;
+      font-family: 'Italiana', serif; font-size: 17px;
+      letter-spacing: 0.03em; text-transform: none;
+      color: var(--navy, #0f1d3a);
     }
     .tidal-cart-checkout {
-      display: block; width: 100%; padding: 16px;
+      display: block; width: 100%; padding: 13px;
       background: var(--navy, #0f1d3a); color: var(--cream, #f4ede2);
       border: 0; cursor: pointer; text-align: center; text-decoration: none;
-      font-family: 'Inter', sans-serif; font-size: 12px;
+      font-family: 'Inter', sans-serif; font-size: 10px;
       letter-spacing: 0.28em; text-transform: uppercase;
-      transition: opacity 0.15s;
+      transition: opacity 0.15s; font-weight: 400;
+      box-sizing: border-box;
     }
-    .tidal-cart-checkout:hover { opacity: 0.9; }
-    .tidal-cart-checkout:disabled { opacity: 0.4; cursor: not-allowed; }
+    .tidal-cart-checkout:hover { opacity: 0.88; }
+    .tidal-cart-checkout:disabled { opacity: 0.35; cursor: not-allowed; }
     .tidal-cart-continue {
-      display: block; text-align: center; padding-top: 12px;
+      display: block; text-align: center; padding-top: 10px;
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 14px; color: rgba(15,29,58,0.55);
+      font-size: 12px; color: rgba(15,29,58,0.5);
       background: none; border: 0; cursor: pointer; width: 100%;
     }
+    .tidal-cart-continue:hover { color: var(--navy, #0f1d3a); }
     @media (max-width: 480px) {
-      .tidal-cart-drawer { width: 100vw; }
+      .tidal-cart-drawer { width: 100vw; max-width: 100vw; }
+      .tidal-cart-header { padding: 16px 18px; }
+      .tidal-cart-body { padding: 6px 18px; }
+      .tidal-cart-footer { padding: 14px 18px 18px; }
     }
   `;
   document.head.appendChild(style);
