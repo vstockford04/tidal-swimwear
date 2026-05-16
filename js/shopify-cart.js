@@ -470,7 +470,7 @@ function injectProductStyles() {
     }
     .tidal-cart-footer {
       padding: 18px 24px 22px;
-      background: #f4ede2;
+      background: #2a2a2a;
       border-top: 1px solid rgba(42,42,42,0.08);
       flex-shrink: 0;
     }
