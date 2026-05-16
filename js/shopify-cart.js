@@ -489,23 +489,23 @@ function injectProductStyles() {
       display: flex; justify-content: space-between; align-items: baseline;
       margin-bottom: 16px;
       font-family: 'Inter', sans-serif;
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: rgba(42,42,42,0.7);
-      font-weight: 400;
+      color: #2a2a2a;
+      font-weight: 500;
     }
     .tidal-cart-subtotal-amount {
       font-family: 'Italiana', serif;
-      font-size: 18px;
+      font-size: 20px;
       letter-spacing: 0.04em;
       text-transform: none;
-      color: #2a2a2a;
+      color: #0f1d3a;
     }
     .tidal-cart-checkout {
       display: block; width: 100%; max-width: 100%;
       padding: 14px 16px;
-      background: #0f1d3a;
+      background: #c8553d;
       color: #f4ede2;
       border: 0;
       cursor: pointer; text-align: center; text-decoration: none;
@@ -517,7 +517,7 @@ function injectProductStyles() {
       line-height: 1.2;
       transition: background 0.18s;
     }
-    .tidal-cart-checkout:hover { background: #1c2c4d; }
+    .tidal-cart-checkout:hover { background: #b04935; }
     .tidal-cart-checkout:disabled { opacity: 0.35; cursor: not-allowed; }
     .tidal-cart-continue {
       display: block; text-align: center;
@@ -645,25 +645,25 @@ function injectDrawerStyles() {
     }
     .tidal-cart-subtotal {
       display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 12px; font-family: 'Inter', sans-serif; font-size: 10px;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(15,29,58,0.65); font-weight: 400;
+      margin-bottom: 12px; font-family: 'Inter', sans-serif; font-size: 11px;
+      letter-spacing: 0.24em; text-transform: uppercase;
+      color: #2a2a2a; font-weight: 500;
     }
     .tidal-cart-subtotal-amount {
-      font-family: 'Italiana', serif; font-size: 17px;
+      font-family: 'Italiana', serif; font-size: 20px;
       letter-spacing: 0.03em; text-transform: none; color: var(--navy, #0f1d3a);
     }
     .tidal-cart-checkout {
-      display: block; width: 100%; padding: 11px 13px;
-      background: transparent; color: var(--navy, #0f1d3a);
-      border: 1px solid var(--navy, #0f1d3a);
+      display: block; width: 100%; padding: 14px 16px;
+      background: #c8553d; color: #f4ede2;
+      border: 0;
       cursor: pointer; text-align: center; text-decoration: none;
-      font-family: 'Inter', sans-serif; font-size: 10px;
+      font-family: 'Inter', sans-serif; font-size: 11px;
       letter-spacing: 0.28em; text-transform: uppercase;
-      transition: background 0.15s, color 0.15s; font-weight: 400; box-sizing: border-box;
+      transition: background 0.15s; font-weight: 400; box-sizing: border-box;
     }
     .tidal-cart-checkout:hover {
-      background: var(--navy, #0f1d3a); color: var(--cream, #f4ede2);
+      background: #b04935;
     }
     .tidal-cart-checkout:disabled { opacity: 0.35; cursor: not-allowed; }
     .tidal-cart-continue {
