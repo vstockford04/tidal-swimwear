@@ -838,3 +838,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 });
+
+.tidal-cart-drawer {
+    background-color  #f4ede2  !important;
+}
