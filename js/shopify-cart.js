@@ -365,7 +365,7 @@ function injectProductStyles() {
       height: 100vh;
       height: 100dvh;
       width: 360px; max-width: 92vw;
-      background: #f4ede2;  !important;
+      background: #f4ede2;
       transform: translateX(100%);
       transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
       z-index: 999;
