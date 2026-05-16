@@ -468,11 +468,7 @@ function injectProductStyles() {
       font-size: 16px; line-height: 1;
       font-family: 'Inter', sans-serif; font-weight: 300;
     }
-    .tidal-cart-footer {
-      padding: 18px 24px 22px;
-      background: #2a2a2a;
-      border-top: 1px solid rgba(42,42,42,0.08);
-      flex-shrink: 0;
+   
     }
     .tidal-cart-subtotal {
       display: flex; justify-content: space-between; align-items: baseline;
