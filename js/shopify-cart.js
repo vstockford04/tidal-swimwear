@@ -352,7 +352,8 @@ function injectProductStyles() {
   if (document.getElementById('tidal-product-styles')) return;
   const style = document.createElement('style');
   style.id = 'tidal-product-styles';
-  style.textContent = `.tidal-cart-overlay {
+  style.textContent = `
+    .tidal-cart-overlay {
       position: fixed; inset: 0;
       background: rgba(20,20,20,0.25);
       opacity: 0; pointer-events: none;
@@ -391,7 +392,9 @@ function injectProductStyles() {
       background: none; border: 0; padding: 4px; cursor: pointer;
       color: #2a2a2a; line-height: 0;
       opacity: 0.65;
+      transition: opacity 0.15s;
     }
+    .tidal-cart-close:hover { opacity: 1; }
     .tidal-cart-close svg { display: block; width: 14px; height: 14px; }
     .tidal-cart-body {
       flex: 1; overflow-y: auto;
@@ -445,6 +448,11 @@ function injectProductStyles() {
       font-size: 11px; color: #2a2a2a;
       display: inline-flex; align-items: center; justify-content: center;
       padding: 0; line-height: 0;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .tidal-cart-qty-btn:hover {
+      background: rgba(42,42,42,0.04);
+      border-color: rgba(42,42,42,0.35);
     }
     .tidal-cart-qty-num {
       min-width: 14px; text-align: center;
@@ -467,8 +475,14 @@ function injectProductStyles() {
       color: rgba(42,42,42,0.35);
       font-size: 16px; line-height: 1;
       font-family: 'Inter', sans-serif; font-weight: 300;
+      transition: color 0.15s;
     }
-   
+    .tidal-cart-line-remove:hover { color: #c8553d; }
+    .tidal-cart-footer {
+      padding: 18px 24px 22px;
+      background: #f4ede2;
+      border-top: 1px solid rgba(42,42,42,0.08);
+      flex-shrink: 0;
     }
     .tidal-cart-subtotal {
       display: flex; justify-content: space-between; align-items: baseline;
@@ -490,9 +504,9 @@ function injectProductStyles() {
     .tidal-cart-checkout {
       display: block; width: 100%; max-width: 100%;
       padding: 14px 16px;
-      background: transparent;
-      color: #2a2a2a;
-      border: 1px solid #2a2a2a;
+      background: #0f1d3a;
+      color: #f4ede2;
+      border: 0;
       cursor: pointer; text-align: center; text-decoration: none;
       font-family: 'Inter', sans-serif;
       font-size: 11px;
@@ -500,17 +514,27 @@ function injectProductStyles() {
       text-transform: uppercase;
       font-weight: 400; box-sizing: border-box;
       line-height: 1.2;
-      transition: background 0.15s, color 0.15s;
+      transition: background 0.18s;
     }
-    .tidal-cart-checkout:hover {
-      background: #2a2a2a;
-      color: #f4ede2;
+    .tidal-cart-checkout:hover { background: #1c2c4d; }
+    .tidal-cart-checkout:disabled { opacity: 0.35; cursor: not-allowed; }
+    .tidal-cart-continue {
+      display: block; text-align: center;
+      padding-top: 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: rgba(42,42,42,0.5);
+      background: none; border: 0; cursor: pointer;
+      width: 100%;
     }
+    .tidal-cart-continue:hover { color: #2a2a2a; }
     @media (max-width: 480px) {
       .tidal-cart-drawer { width: 100vw; max-width: 100vw; }
       .tidal-cart-header { padding: 18px 18px 14px; }
       .tidal-cart-body { padding: 0 18px; }
-      .
+      .tidal-cart-footer {
+        padding: 14px 18px calc(20px + env(safe-area-inset-bottom, 0px));
       }
       .tidal-cart-checkout {
         padding: 14px 14px;
@@ -838,7 +862,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 });
-
-.tidal-cart-drawer {
-    background-color  #f4ede2  !important;
-}
