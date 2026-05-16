@@ -353,187 +353,193 @@ function injectProductStyles() {
   const style = document.createElement('style');
   style.id = 'tidal-product-styles';
   style.textContent = `
-    /* ── Colour switcher — sits flush below image, unchanged ── */
-    .colour-switcher {
-      display: flex;
-      border-top: 1px solid var(--hairline, rgba(15,29,58,0.10));
-      background: var(--cream, #f4ede2);
-      width: 100%;
+    .tidal-cart-overlay {
+      position: fixed; inset: 0;
+      background: rgba(20,20,20,0.25);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 998;
     }
-
-    .colour-btn {
-      flex: 1;
-      padding: 14px 6px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-size: 9px;
-      letter-spacing: 0.25em;
+    .tidal-cart-overlay.is-open { opacity: 1; pointer-events: auto; }
+    .tidal-cart-drawer {
+      position: fixed; top: 0; right: 0;
+      height: 100vh;
+      height: 100dvh;
+      width: 360px; max-width: 92vw;
+      background: #f4ede2;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
+      z-index: 999;
+      display: flex; flex-direction: column;
+      box-shadow: -2px 0 24px rgba(0,0,0,0.04);
+    }
+    .tidal-cart-drawer.is-open { transform: translateX(0); }
+    .tidal-cart-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 24px 18px;
+      background: #f4ede2;
+    }
+    .tidal-cart-header h2 {
+      margin: 0;
+      font-family: 'Italiana', serif;
+      font-size: 14px;
+      color: #2a2a2a;
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      font-family: 'Inter', sans-serif;
-      color: var(--muted, #6b6b6b);
-      transition: all 0.2s;
-      border-bottom: 2px solid transparent;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
       font-weight: 400;
     }
-
-    .colour-btn:not(:last-child) {
-      border-right: 1px solid var(--hairline, rgba(15,29,58,0.10));
+    .tidal-cart-close {
+      background: none; border: 0; padding: 4px; cursor: pointer;
+      color: #2a2a2a; line-height: 0;
+      opacity: 0.65;
+      transition: opacity 0.15s;
     }
-
-    .colour-btn .dot {
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(15,29,58,0.18);
-      transition: transform 0.2s, border-color 0.2s;
-      flex-shrink: 0;
+    .tidal-cart-close:hover { opacity: 1; }
+    .tidal-cart-close svg { display: block; width: 14px; height: 14px; }
+    .tidal-cart-body {
+      flex: 1; overflow-y: auto;
+      padding: 0 24px;
+      background: #f4ede2;
     }
-
-    .colour-btn.active .dot {
-      transform: scale(1.25);
-      border-color: var(--navy, #0f1d3a);
-    }
-
-    .colour-btn.active {
-      color: var(--navy, #0f1d3a);
-      border-bottom-color: var(--navy, #0f1d3a);
-    }
-
-    .colour-btn:hover { color: var(--navy, #0f1d3a); }
-
-    /* ── Product info wrapper ── */
-    .product-info {
-      padding: 20px 24px 0;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-    }
-
-    .product-category {
-      font-size: 9px;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--muted, #6b6b6b);
-      margin-bottom: 6px;
-      font-weight: 400;
-    }
-
-    .product-desc {
+    .tidal-cart-empty {
+      text-align: center; padding: 80px 20px;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 14px;
-      color: var(--muted, #6b6b6b);
-      line-height: 1.6;
-      margin-bottom: 16px;
-      max-width: 300px;
+      font-size: 15px;
+      color: rgba(42,42,42,0.45);
     }
-
-    /* ── Price row ── */
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      margin-bottom: 14px;
-      width: 100%;
+    .tidal-cart-line {
+      display: grid; grid-template-columns: 56px 1fr auto;
+      gap: 14px; padding: 18px 0;
+      border-bottom: 1px solid rgba(42,42,42,0.08);
     }
-
-    .product-price {
+    .tidal-cart-line:first-child { padding-top: 6px; }
+    .tidal-cart-line:last-child { border-bottom: 0; }
+    .tidal-cart-line-img {
+      width: 56px; height: 72px;
+      background: rgba(42,42,42,0.04);
+      object-fit: cover; display: block;
+    }
+    .tidal-cart-line-info {
+      display: flex; flex-direction: column; gap: 3px; min-width: 0;
+    }
+    .tidal-cart-line-title {
       font-family: 'Italiana', serif;
-      font-size: 1.4rem;
-      color: var(--navy, #0f1d3a);
+      font-size: 13px;
+      color: #2a2a2a;
       letter-spacing: 0.04em;
+      line-height: 1.25;
     }
-
-    /* ── Size row — centred, just below price ── */
-    .size-row {
-      display: flex;
-      gap: 5px;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-      width: 100%;
-    }
-
-    /* Size buttons mirror the colour active style:
-       muted by default, navy text + navy bottom border when active */
-    .size-btn {
-      background: none;
-      border: none;
-      border-bottom: 2px solid transparent;
-      padding: 6px 10px;
+    .tidal-cart-line-meta {
       font-size: 9px;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
+      color: rgba(42,42,42,0.55);
       font-family: 'Inter', sans-serif;
-      color: var(--muted, #6b6b6b);
-      cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
-      font-weight: 400;
-      white-space: nowrap;
       line-height: 1.4;
     }
-
-    .size-btn:hover {
-      color: var(--navy, #0f1d3a);
+    .tidal-cart-line-qty {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 8px;
     }
-
-    .size-btn.active {
-      color: var(--navy, #0f1d3a);
-      border-bottom-color: var(--navy, #0f1d3a);
+    .tidal-cart-qty-btn {
+      width: 20px; height: 20px;
+      border: 1px solid rgba(42,42,42,0.18);
+      background: transparent; cursor: pointer;
+      font-size: 11px; color: #2a2a2a;
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0; line-height: 0;
+      transition: background 0.15s, border-color 0.15s;
     }
-
-    /* ── Add to Bag — full width, below size row ── */
-    .add-btn {
-      width: 100%;
-      background: var(--navy, #0f1d3a);
-      color: var(--cream, #f4ede2);
-      border: none;
-      padding: 15px;
-      font-size: 10px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
+    .tidal-cart-qty-btn:hover {
+      background: rgba(42,42,42,0.04);
+      border-color: rgba(42,42,42,0.35);
+    }
+    .tidal-cart-qty-num {
+      min-width: 14px; text-align: center;
+      font-size: 11px; color: #2a2a2a;
+      font-family: 'Inter', sans-serif; letter-spacing: 0.05em;
+    }
+    .tidal-cart-line-right {
+      display: flex; flex-direction: column;
+      align-items: flex-end; justify-content: space-between;
+      gap: 6px;
+    }
+    .tidal-cart-line-price {
+      font-family: 'Italiana', serif;
+      font-size: 13px; color: #2a2a2a;
+      letter-spacing: 0.04em;
+    }
+    .tidal-cart-line-remove {
+      background: none; border: 0;
+      padding: 2px 6px; cursor: pointer;
+      color: rgba(42,42,42,0.35);
+      font-size: 16px; line-height: 1;
+      font-family: 'Inter', sans-serif; font-weight: 300;
+      transition: color 0.15s;
+    }
+    .tidal-cart-line-remove:hover { color: #c8553d; }
+    .tidal-cart-footer {
+      padding: 18px 24px 22px;
+      background: #f4ede2;
+      border-top: 1px solid rgba(42,42,42,0.08);
+      flex-shrink: 0;
+    }
+    .tidal-cart-subtotal {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 16px;
       font-family: 'Inter', sans-serif;
-      cursor: pointer;
-      transition: background 0.25s;
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(42,42,42,0.7);
       font-weight: 400;
-      display: block;
-      text-align: center;
-      box-sizing: border-box;
-      margin-top: 0;
     }
-
-    .add-btn:hover:not(:disabled) {
-      background: var(--coral, #c8553d);
+    .tidal-cart-subtotal-amount {
+      font-family: 'Italiana', serif;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: #2a2a2a;
     }
-
-    .add-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
+    .tidal-cart-checkout {
+      display: block; width: 100%; max-width: 100%;
+      padding: 14px 16px;
+      background: #0f1d3a;
+      color: #f4ede2;
+      border: 0;
+      cursor: pointer; text-align: center; text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-weight: 400; box-sizing: border-box;
+      line-height: 1.2;
+      transition: background 0.18s;
     }
-
-    /* ── Mobile ── */
-    @media (max-width: 600px) {
-      .product-info {
-        padding: 16px 16px 0;
+    .tidal-cart-checkout:hover { background: #1c2c4d; }
+    .tidal-cart-checkout:disabled { opacity: 0.35; cursor: not-allowed; }
+    .tidal-cart-continue {
+      display: block; text-align: center;
+      padding-top: 14px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: rgba(42,42,42,0.5);
+      background: none; border: 0; cursor: pointer;
+      width: 100%;
+    }
+    .tidal-cart-continue:hover { color: #2a2a2a; }
+    @media (max-width: 480px) {
+      .tidal-cart-drawer { width: 100vw; max-width: 100vw; }
+      .tidal-cart-header { padding: 18px 18px 14px; }
+      .tidal-cart-body { padding: 0 18px; }
+      .tidal-cart-footer {
+        padding: 14px 18px calc(20px + env(safe-area-inset-bottom, 0px));
       }
-      .size-btn {
-        padding: 5px 8px;
-        font-size: 8px;
-      }
-      .colour-btn {
-        padding: 11px 4px;
-        font-size: 8px;
-        letter-spacing: 0.18em;
+      .tidal-cart-checkout {
+        padding: 14px 14px;
+        font-size: 10px;
+        letter-spacing: 0.26em;
       }
     }
   `;
