@@ -518,8 +518,6 @@ function injectProductStyles() {
         letter-spacing: 0.26em;
       }
     }
-      }
-    }
   `;
   document.head.appendChild(style);
 }
