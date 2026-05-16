@@ -509,8 +509,7 @@ function injectProductStyles() {
       .tidal-cart-drawer { width: 100vw; max-width: 100vw; }
       .tidal-cart-header { padding: 18px 18px 14px; }
       .tidal-cart-body { padding: 0 18px; }
-      .tidal-cart-footer {
-        padding: 14px 18px calc(20px + env(safe-area-inset-bottom, 0px));
+      .
       }
       .tidal-cart-checkout {
         padding: 14px 14px;
