@@ -352,7 +352,7 @@ function injectProductStyles() {
   if (document.getElementById('tidal-product-styles')) return;
   const style = document.createElement('style');
   style.id = 'tidal-product-styles';
-  style.textContent = .tidal-cart-overlay {
+  style.textContent = `.tidal-cart-overlay {
       position: fixed; inset: 0;
       background: rgba(20,20,20,0.25);
       opacity: 0; pointer-events: none;
