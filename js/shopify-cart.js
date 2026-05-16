@@ -490,9 +490,9 @@ function injectProductStyles() {
     .tidal-cart-checkout {
       display: block; width: 100%; max-width: 100%;
       padding: 14px 16px;
-      background: #0f1d3a;
-      color: #f4ede2;
-      border: 0;
+      background: transparent;
+      color: #2a2a2a;
+      border: 1px solid #2a2a2a;
       cursor: pointer; text-align: center; text-decoration: none;
       font-family: 'Inter', sans-serif;
       font-size: 11px;
@@ -500,6 +500,11 @@ function injectProductStyles() {
       text-transform: uppercase;
       font-weight: 400; box-sizing: border-box;
       line-height: 1.2;
+      transition: background 0.15s, color 0.15s;
+    }
+    .tidal-cart-checkout:hover {
+      background: #2a2a2a;
+      color: #f4ede2;
     }
     @media (max-width: 480px) {
       .tidal-cart-drawer { width: 100vw; max-width: 100vw; }
