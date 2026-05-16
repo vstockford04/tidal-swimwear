@@ -1674,6 +1674,89 @@ footer > .footer-brand p {
   margin-right: auto !important;
   max-width: 360px !important;
 }
+
+
+
+/* === UNIFIED FOOTER STYLING (matches index.html, applied to all pages) === */
+footer .footer-brand .logo-mark,
+footer .footer-brand .logo-mark .logo-name {
+  font-family: 'Italiana', serif !important;
+  font-size: 20px !important;
+  letter-spacing: 0.32em !important;
+  color: var(--cream) !important;
+  line-height: 1.1 !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+footer .footer-brand .logo-sub {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  letter-spacing: 0.4em !important;
+  color: rgba(244,237,226,0.6) !important;
+  margin-top: 6px !important;
+  display: block !important;
+  text-transform: uppercase !important;
+}
+footer .footer-brand p {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-style: italic !important;
+  font-size: 16px !important;
+  opacity: 0.55 !important;
+  line-height: 1.7 !important;
+  margin: 24px auto 0 !important;
+  max-width: 380px !important;
+  color: var(--cream) !important;
+}
+footer .footer-col h4,
+footer .footer-grid h4 {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+  color: var(--cream) !important;
+  margin: 0 0 20px !important;
+  opacity: 0.85 !important;
+}
+footer .footer-col ul,
+footer .footer-grid ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+footer .footer-col ul li,
+footer .footer-grid ul li {
+  margin-bottom: 14px !important;
+}
+footer .footer-col ul li a,
+footer .footer-grid ul li a,
+footer .footer-col a,
+footer .footer-grid a {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-style: italic !important;
+  font-size: 17px !important;
+  color: rgba(244,237,226,0.85) !important;
+  text-decoration: none !important;
+  letter-spacing: 0.01em !important;
+  transition: opacity 0.2s, color 0.2s !important;
+  font-weight: 400 !important;
+  display: inline-block !important;
+}
+footer .footer-col ul li a:hover,
+footer .footer-grid ul li a:hover,
+footer .footer-col a:hover {
+  opacity: 1 !important;
+  color: var(--cream) !important;
+}
+footer .footer-bottom {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 10px !important;
+  letter-spacing: 0.28em !important;
+  text-transform: uppercase !important;
+  color: rgba(244,237,226,0.45) !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
 </style>
 <meta content="#f4ede2" name="theme-color"/><meta content="light only" name="color-scheme"/></head>
 <body>
@@ -1702,12 +1785,8 @@ footer > .footer-brand p {
 <ul class="nav-links nav-right-links">
 <li><a class="active" href="Our-story.html">Our Story</a></li>
 <li><a href="contact.html">Contact</a></li>
-<li class="nav-icon"><a aria-label="Search" href="#">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="16"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
-</a></li>
-<li class="nav-icon"><a aria-label="Account" href="#">
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="16"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path></svg>
-</a></li>
+
+
 <li class="nav-icon"><a aria-label="Shopping bag" class="cart-icon" href="#">
 <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="16"><path d="M5 7h14l-1.3 13a1.8 1.8 0 0 1-1.8 1.6H8.1a1.8 1.8 0 0 1-1.8-1.6L5 7z"></path><path d="M9 7V5a3 3 0 0 1 6 0v2"></path></svg>
 <span class="cart-count">0</span>
@@ -1771,5 +1850,10 @@ footer > .footer-brand p {
 </div>
 <div class="footer-bottom">© 2026 Tidal Swimwear London · All rights reserved</div>
 </footer>
+
+</div>
+
+
+<script src="/js/shopify-cart.js"></script>
 </body>
 </html>
