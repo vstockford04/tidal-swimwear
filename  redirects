@@ -1,0 +1,2 @@
+# Cart and checkout traffic is handled by Shopify directly.
+# (Removed old redirect that was sending customers to admin.shopify.com)
