@@ -70,11 +70,8 @@ function setBtn(btn, state) {
    REMOVE each entry once the Shopify variant is renamed to "Toffee".
    The function is a safe no-op if the map is empty.
    ============================================================ */
-const COLOUR_ALIASES = {
-  'the lucy bottoms': { toffee: 'beige' },
-  'the neri bottoms': { toffee: 'beige' },
-  'the helena top':   { toffee: 'beige' },
-  'the emily top':    { toffee: 'beige' },
+const COLOUR_ALIASES = {};
+
 };
 
 function resolveColour(productTitle, uiColour) {
@@ -755,6 +752,7 @@ function renderDrawer() {
   body.innerHTML = lines.map(({ node: line }) => {
     const v = line.merchandise;
     const opts = (v.selectedOptions || []).map(o => o.value).join(' · ');
+
     const img = v.image?.url || v.product?.featuredImage?.url || '';
     const imgTag = img
       ? `<img class="tidal-cart-line-img" src="${img}" alt="${v.product.title}">`
