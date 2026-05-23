@@ -488,7 +488,7 @@ function injectProductStyles() {
       font-size: 11px;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: #2a2a2a;
+      color: #f4ede2;
       font-weight: 500;
     }
     .tidal-cart-subtotal-amount {
@@ -496,7 +496,7 @@ function injectProductStyles() {
       font-size: 20px;
       letter-spacing: 0.04em;
       text-transform: none;
-      color: #0f1d3a;
+      color: #f4ede2;
     }
     .tidal-cart-checkout {
       display: block; width: 100%; max-width: 100%;
