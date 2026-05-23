@@ -344,6 +344,10 @@ async function fetchCart() {
    PRODUCT CARD BUTTON STYLES
    Injected once on init. Ensures size buttons, colour switcher
    and Add to Bag are correctly centred and aligned on all screens.
+
+   NOTE: Footer uses a NAVY background with CREAM text so the
+   subtotal label + amount are clearly visible. Both style
+   functions are kept in sync to avoid override conflicts.
    ============================================================ */
 function injectProductStyles() {
   if (document.getElementById('tidal-product-styles')) return;
@@ -477,8 +481,8 @@ function injectProductStyles() {
     .tidal-cart-line-remove:hover { color: #c8553d; }
     .tidal-cart-footer {
       padding: 18px 24px 22px;
-      background: #f4ede2;
-      border-top: 1px solid rgba(42,42,42,0.08);
+      background: #0f1d3a;
+      border-top: 1px solid rgba(244,237,226,0.12);
       flex-shrink: 0;
     }
     .tidal-cart-subtotal {
@@ -521,11 +525,11 @@ function injectProductStyles() {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 13px;
-      color: rgba(42,42,42,0.5);
+      color: rgba(244,237,226,0.6);
       background: none; border: 0; cursor: pointer;
       width: 100%;
     }
-    .tidal-cart-continue:hover { color: #2a2a2a; }
+    .tidal-cart-continue:hover { color: #f4ede2; }
     @media (max-width: 480px) {
       .tidal-cart-drawer { width: 100vw; max-width: 100vw; }
       .tidal-cart-header { padding: 18px 18px 14px; }
@@ -545,6 +549,8 @@ function injectProductStyles() {
 
 /* ============================================================
    CART DRAWER UI (only used when ENABLED)
+   Footer = navy background, cream text. Kept in sync with
+   injectProductStyles() so there is no override conflict.
    ============================================================ */
 function injectDrawerStyles() {
   if (document.getElementById('tidal-cart-styles')) return;
@@ -635,19 +641,19 @@ function injectDrawerStyles() {
     }
     .tidal-cart-line-remove:hover { color: var(--coral, #c8553d); }
     .tidal-cart-footer {
-      padding: 16px 22px 20px; border-top: 1px solid rgba(15,29,58,0.06);
-      background: var(--cream, #f4ede2);
+      padding: 16px 22px 20px; border-top: 1px solid rgba(244,237,226,0.12);
+      background: #0f1d3a;
       flex-shrink: 0;
     }
     .tidal-cart-subtotal {
       display: flex; justify-content: space-between; align-items: baseline;
       margin-bottom: 12px; font-family: 'Inter', sans-serif; font-size: 11px;
       letter-spacing: 0.24em; text-transform: uppercase;
-      color: #2a2a2a; font-weight: 500;
+      color: #f4ede2; font-weight: 500;
     }
     .tidal-cart-subtotal-amount {
       font-family: 'Italiana', serif; font-size: 20px;
-      letter-spacing: 0.03em; text-transform: none; color: var(--navy, #0f1d3a);
+      letter-spacing: 0.03em; text-transform: none; color: #f4ede2;
     }
     .tidal-cart-checkout {
       display: block; width: 100%; padding: 14px 16px;
@@ -665,10 +671,10 @@ function injectDrawerStyles() {
     .tidal-cart-continue {
       display: block; text-align: center; padding-top: 10px;
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 12px; color: rgba(15,29,58,0.5);
+      font-size: 12px; color: rgba(244,237,226,0.6);
       background: none; border: 0; cursor: pointer; width: 100%;
     }
-    .tidal-cart-continue:hover { color: var(--navy, #0f1d3a); }
+    .tidal-cart-continue:hover { color: #f4ede2; }
     @media (max-width: 480px) {
       .tidal-cart-drawer { width: 100vw; max-width: 100vw; }
       .tidal-cart-header { padding: 16px 18px; }
@@ -859,4 +865,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 });
-
