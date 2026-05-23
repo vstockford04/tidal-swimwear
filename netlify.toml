@@ -9,7 +9,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# ---- Clean URL rewrites (show pretty URL, serve the .html file) ----
+# ---- Clean URL rewrites (pretty URL shown, .html file served) ----
 [[redirects]]
   from = "/collection"
   to = "/collection.html"
@@ -49,6 +49,32 @@
   from = "/faq"
   to = "/faq.html"
   status = 200
+
+# ---- Old messy URLs redirect to clean ones (301 = permanent) ----
+[[redirects]]
+  from = "/look book.html"
+  to = "/lookbook"
+  status = 301
+
+[[redirects]]
+  from = "/Our-story.html"
+  to = "/our-story"
+  status = 301
+
+[[redirects]]
+  from = "/Press & Pop-ups.html"
+  to = "/press"
+  status = 301
+
+[[redirects]]
+  from = "/Tidal-size-guide.html"
+  to = "/size-guide"
+  status = 301
+
+[[redirects]]
+  from = "/Tidal-shipping-returns.html"
+  to = "/shipping-returns"
+  status = 301
 
 # ---- Convenience shortcut ----
 [[redirects]]
