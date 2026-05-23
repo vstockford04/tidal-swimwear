@@ -9,12 +9,49 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-[[redirects]]
-  from = "/shop"
-  to = "/collection.html"
-  status = 301
-
+# ---- Clean URL rewrites (show pretty URL, serve the .html file) ----
 [[redirects]]
   from = "/collection"
   to = "/collection.html"
   status = 200
+
+[[redirects]]
+  from = "/lookbook"
+  to = "/look book.html"
+  status = 200
+
+[[redirects]]
+  from = "/our-story"
+  to = "/Our-story.html"
+  status = 200
+
+[[redirects]]
+  from = "/press"
+  to = "/Press & Pop-ups.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/size-guide"
+  to = "/Tidal-size-guide.html"
+  status = 200
+
+[[redirects]]
+  from = "/shipping-returns"
+  to = "/Tidal-shipping-returns.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 200
+
+# ---- Convenience shortcut ----
+[[redirects]]
+  from = "/shop"
+  to = "/collection.html"
+  status = 301
