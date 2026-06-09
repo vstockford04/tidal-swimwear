@@ -1,2 +1,14 @@
-# Cart and checkout traffic is handled by Shopify directly.
-# (Removed old redirect that was sending customers to admin.shopify.com)
+# Tidal Swimwear URL redirects
+# Old ugly URLs redirected to new clean URLs (301 = permanent)
+
+# Look Book - all variants -> /lookbook
+/look%20book.html  /lookbook.html  301
+/look%20book       /lookbook.html  301
+/look book.html    /lookbook.html  301
+/look book         /lookbook.html  301
+
+# Press & Pop-ups - all variants -> /press-popups
+/Press%20&%20Pop-ups.html  /press-popups.html  301
+/Press%20&%20Pop-ups       /press-popups.html  301
+/Press & Pop-ups.html      /press-popups.html  301
+/Press & Pop-ups           /press-popups.html  301
